@@ -12,9 +12,24 @@ app.innerHTML = `
       </a>
       <div class="nav-links">
         <a href="/" class="audit-nav-link">← Back to Home</a>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="/" class="mobile-menu-link">← Back to Home</a>
+      <a href="https://t.me/thisvishalsingh" class="mobile-menu-link">Telegram</a>
+      <a href="https://x.com/Zippel_Labs" class="mobile-menu-link">X (Twitter)</a>
+      <a href="https://github.com/ZippelLabs/zp1" class="mobile-menu-link">GitHub</a>
+    </div>
+  </div>
 
   <!-- Audit Portal Hero -->
   <section class="audit-hero">
@@ -204,8 +219,32 @@ app.innerHTML = `
   <!-- Footer -->
   <footer class="footer minimal">
     <div class="footer-inner">
-      <span class="footer-copyright">© 2025 ZippelLabs</span>
+      <span class="footer-copyright">© <a href="https://x.com/Zippel_Labs" style="color: inherit; text-decoration: none;">ZippelLabs</a> • by <a href="https://x.com/thisvishalsingh" style="color: inherit; text-decoration: none;">thisvishalsingh</a></span>
       <span class="footer-license">MIT / Apache 2.0</span>
     </div>
   </footer>
 `
+
+// Mobile menu toggle
+const toggle = document.getElementById('mobile-menu-toggle')
+const menu = document.getElementById('mobile-menu')
+
+if (toggle && menu) {
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('open')
+  })
+
+  // Close menu when clicking a link
+  menu.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open')
+    })
+  })
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target as Node) && !toggle.contains(e.target as Node)) {
+      menu.classList.remove('open')
+    }
+  })
+}
