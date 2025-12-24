@@ -950,6 +950,172 @@ body {
 }
 
 /* =====================================================
+   PARTNER SECTION
+   ===================================================== */
+
+.partner-section {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.partner-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+}
+
+.partner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: var(--transition-fast);
+}
+
+.partner-link:hover {
+  color: var(--color-primary-400);
+}
+
+.partner-logo {
+  height: 32px;
+  width: auto;
+}
+
+.partner-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.partner-tagline {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin: 1rem 0 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.partner-info {
+  text-align: center;
+}
+
+.partner-tweet {
+  max-width: 400px;
+  min-width: 300px;
+}
+
+.partner-tweet .twitter-tweet {
+  margin: 0 !important;
+}
+
+/* Static Tweet Card */
+.partner-tweet-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 400px;
+  min-width: 300px;
+  text-align: left;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tweet-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.tweet-author {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tweet-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+.tweet-handle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.tweet-x-icon {
+  color: var(--color-text-muted);
+}
+
+.tweet-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0 0 0.75rem;
+}
+
+.tweet-text a {
+  color: var(--color-primary-400);
+  text-decoration: none;
+}
+
+.tweet-text a:hover {
+  text-decoration: underline;
+}
+
+.tweet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.tweet-date {
+  color: var(--color-text-muted);
+}
+
+.tweet-link {
+  color: var(--color-primary-400);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tweet-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .partner-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .partner-tweet {
+    max-width: 100%;
+  }
+}
+
+/* =====================================================
    FOUNDER SECTION
    ===================================================== */
 

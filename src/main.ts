@@ -238,6 +238,37 @@ app.innerHTML = `
     </div>
   </section>
 
+  <!-- Strategic Partner -->
+  <section class="section partner-section">
+    <p class="partner-label">Trusted Partner</p>
+    <div class="partner-content">
+      <div class="partner-info">
+        <a href="https://formal.land" target="_blank" class="partner-link">
+          <img src="https://formal.land/img/land-512.png" alt="Formal Land" class="partner-logo" />
+          <span class="partner-name">Formal Land</span>
+        </a>
+        <p class="partner-tagline">Formal verification experts. We combine manual security audits with mathematical proofs.</p>
+      </div>
+      <div class="partner-tweet-card">
+        <div class="tweet-header">
+          <img src="https://formal.land/img/land-512.png" alt="Formal Land" class="tweet-avatar" />
+          <div class="tweet-author">
+            <span class="tweet-name">Formal Land</span>
+            <span class="tweet-handle">@FormalLand</span>
+          </div>
+          <svg class="tweet-x-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </div>
+        <p class="tweet-text">We're joining forces with <a href="https://x.com/Zippel_Labs" target="_blank">@Zippel_Labs</a> to redefine ZK security auditing. Traditional security research + formal verification = complete end-to-end ZK security coverage 🤝</p>
+        <div class="tweet-footer">
+          <span class="tweet-date">Dec 4, 2025</span>
+          <a href="https://x.com/FormalLand/status/1996591667864822096" target="_blank" class="tweet-link">View on X →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Founder Section -->
   <section class="section founder-section-minimal">
     <div class="founder-bar">
