@@ -37,56 +37,6 @@ function initScrollAnimations() {
   })
 }
 
-// Cursor sparkle effect
-function initSparkles() {
-  const sparkleContainer = document.createElement('div')
-  sparkleContainer.className = 'sparkle-container'
-  document.body.appendChild(sparkleContainer)
-
-  let lastX = 0
-  let lastY = 0
-  let throttle = false
-
-  document.addEventListener('mousemove', (e) => {
-    if (throttle) return
-    throttle = true
-    setTimeout(() => throttle = false, 50)
-
-    const dx = e.clientX - lastX
-    const dy = e.clientY - lastY
-    const distance = Math.sqrt(dx * dx + dy * dy)
-
-    if (distance > 10) {
-      createSparkle(e.clientX, e.clientY)
-      lastX = e.clientX
-      lastY = e.clientY
-    }
-  })
-
-  function createSparkle(x: number, y: number) {
-    const sparkle = document.createElement('div')
-    sparkle.className = 'sparkle'
-
-    const offsetX = (Math.random() - 0.5) * 20
-    const offsetY = (Math.random() - 0.5) * 20
-
-    sparkle.style.left = `${x + offsetX}px`
-    sparkle.style.top = `${y + offsetY}px`
-    sparkle.style.setProperty('--sparkle-x', `${(Math.random() - 0.5) * 100}px`)
-    sparkle.style.setProperty('--sparkle-y', `${(Math.random() - 0.5) * 100}px`)
-
-    const colors = ['#22d3ee', '#3b82f6', '#8b5cf6', '#06b6d4']
-    sparkle.style.background = colors[Math.floor(Math.random() * colors.length)]
-
-    const size = Math.random() * 6 + 2
-    sparkle.style.width = `${size}px`
-    sparkle.style.height = `${size}px`
-
-    sparkleContainer.appendChild(sparkle)
-    setTimeout(() => sparkle.remove(), 1000)
-  }
-}
-
 // Expandable sections
 function initExpandables() {
   document.querySelectorAll('.expand-trigger').forEach(trigger => {
@@ -138,22 +88,8 @@ app.innerHTML = `
         ZippelLabs
       </a>
       <div class="nav-links">
-        <a href="/audits.html" class="nav-link">Audits</a>
-        <a href="https://t.me/thisvishalsingh" class="nav-social" title="Telegram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-          </svg>
-        </a>
-        <a href="https://x.com/Zippel_Labs" class="nav-social" title="X (Twitter)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-        <a href="https://github.com/ZippelLabs/zp1" class="btn-primary">
-          GitHub
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
+        <a href="https://t.me/thisvishalsingh" class="btn-primary">
+          Start a Conversation
         </a>
         <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -167,10 +103,11 @@ app.innerHTML = `
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-links">
+      <a href="/zp1.html" class="mobile-menu-link">ZP1</a>
       <a href="/audits.html" class="mobile-menu-link">Audits</a>
       <a href="https://t.me/thisvishalsingh" class="mobile-menu-link">Telegram</a>
       <a href="https://x.com/Zippel_Labs" class="mobile-menu-link">X (Twitter)</a>
-      <a href="https://github.com/ZippelLabs/zp1" class="mobile-menu-link">GitHub</a>
+      <a href="https://github.com/ZippelLabs" class="mobile-menu-link">GitHub</a>
     </div>
   </div>
 
@@ -221,110 +158,135 @@ app.innerHTML = `
       </svg>
     </div>
 
-    <h1 class="hero-headline">
-      <span class="gradient-text">ZP1</span>
+
+    <h1 class="hero-headline animate-fade-in">
+      Securing cryptographic systems.
     </h1>
-    <p class="hero-tagline animate-fade-in" style="animation-delay: 0.2s">
-      High-Performance RISC-V zkVM
+    <p class="hero-subheadline animate-fade-in" style="animation-delay: 0.2s">
+      ZK circuits. zkVMs. Cryptographic protocols.<br/>
+      <strong style="color: var(--color-primary-400);">Subsidized rates for zkVM teams.</strong>
     </p>
-    <p class="hero-subheadline animate-fade-in" style="animation-delay: 0.3s">
-      Built on Mersenne-31 Circle STARKs
-    </p>
-    <div class="hero-cta animate-fade-in" style="animation-delay: 0.4s">
-      <a href="https://github.com/ZippelLabs/zp1" class="btn-primary">
-        Get Started
+    <div class="hero-cta animate-fade-in" style="animation-delay: 0.3s">
+      <a href="/audits.html" class="btn-primary">
+        Get a Quote
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>
-      <a href="/audits.html" class="btn-secondary">
-        Book an audit
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </a>
-      <button class="btn-secondary expand-trigger" data-target="details-section">
-        Learn More
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
     </div>
   </section>
 
-  <!-- Expandable Details Section -->
-  <section id="details-section" class="details-section">
-    <div class="details-content">
+  <!-- Three Pillars Section -->
+  <section class="section pillars-section">
+    <div class="pillars-grid">
       
-      <!-- Features -->
-      <div class="feature-grid">
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <h4 class="feature-title">Mersenne-31</h4>
-          <p class="feature-description">
-            The ideal 32-bit prime (2³¹−1). Single-instruction addition, blazing-fast multiplication. Native SIMD on AVX-512 and NEON.
-          </p>
+      <!-- Audit Pillar -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
         </div>
+        <h3 class="pillar-title">Audit</h3>
+        <p class="pillar-description">
+          Security audits for ZK circuits, zkVMs, and cryptographic protocols.
+          <strong style="display: block; margin-top: 0.5rem; color: var(--color-primary-400);">Onboarding in < 6 hours.</strong>
+        </p>
+        <a href="/audits.html" class="pillar-link">Request audit →</a>
+      </div>
 
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-          </div>
-          <h4 class="feature-title">Circle STARKs</h4>
-          <p class="feature-description">
-            Power-of-two FFTs on M31 using the unit circle. Transparent proofs with no trusted setup. QM31 extension for 128-bit security.
-          </p>
+      <!-- Build Pillar -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
         </div>
+        <h3 class="pillar-title">Build</h3>
+        <p class="pillar-description">
+          ZP1 — a RISC-V zkVM built on Circle STARKs and Mersenne-31 arithmetic.
+        </p>
+        <div style="margin: 1rem 0; border-radius: 8px; overflow: hidden;">
+          <iframe 
+            width="100%" 
+            height="200" 
+            src="https://www.youtube.com/embed/Dm-SaFFZS48?start=1420" 
+            title="ZP1 Presentation - Ethproofs Call" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            style="border-radius: 8px;">
+          </iframe>
+        </div>
+        <a href="/zp1.html" class="pillar-link">Explore ZP1 →</a>
+      </div>
 
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="4" y="4" width="16" height="16" rx="2"/>
-              <path d="M9 9h6M9 12h6M9 15h4"/>
-            </svg>
-          </div>
-          <h4 class="feature-title">RISC-V Executor</h4>
-          <p class="feature-description">
-            Standard RV32IM instruction set. Write in Rust, compile with cargo, prove on ZP1. 77-column execution trace.
-          </p>
+      <!-- Research Pillar -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
         </div>
-
-        <div class="feature-card animate-on-scroll">
-          <div class="feature-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <h4 class="feature-title">Delegation Core</h4>
-          <p class="feature-description">
-            LogUp permutation arguments for memory. 100,000× speedup for SHA-256 and Keccak via specialized precompile circuits.
-          </p>
-        </div>
+        <h3 class="pillar-title">Research</h3>
+        <p class="pillar-description">
+          ZK security analysis and vulnerability research. Coming soon.
+        </p>
+        <span class="pillar-link" style="opacity: 0.5;">Coming soon →</span>
       </div>
 
     </div>
   </section>
 
+  <!-- Founder Section -->
+  <section class="section founder-section-minimal">
+    <div class="founder-bar">
+      <img src="https://pbs.twimg.com/profile_images/1986720992027455488/_dpMLk5R_400x400.jpg" alt="Vishal Singh" class="founder-avatar">
+      <div class="founder-details">
+        <h3 class="founder-name">Vishal Singh</h3>
+        <p class="founder-role">Security Researcher & ZK Engineer</p>
+      </div>
+      <div class="founder-links">
+        <a href="https://x.com/thisvishalsingh" class="founder-link" title="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/this-vishalsingh" class="founder-link" title="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <h2 class="section-heading">Ready to secure your project?</h2>
+    <a href="/audits.html" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+      Get a Quote
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </section>
+
   <!-- Footer -->
   <footer class="footer minimal">
     <div class="footer-inner">
-      <span class="footer-copyright">© <a href="https://x.com/Zippel_Labs" style="color: inherit; text-decoration: none;">ZippelLabs</a> • by <a href="https://x.com/thisvishalsingh" style="color: inherit; text-decoration: none;">thisvishalsingh</a></span>
-      <span class="footer-license">MIT / Apache 2.0</span>
+      <span class="footer-links">
+        <a href="https://x.com/Zippel_Labs" style="color: var(--color-text-muted); text-decoration: none;">Twitter</a>
+        <span style="color: var(--color-text-muted);">·</span>
+        <a href="https://github.com/ZippelLabs" style="color: var(--color-text-muted); text-decoration: none;">GitHub</a>
+      </span>
     </div>
   </footer>
 `
 
 // Initialize interactions
 initNavigation()
-initSparkles()
+// Note: sparkles removed for cleaner, professional look
 initExpandables()
 initMobileMenu()
 

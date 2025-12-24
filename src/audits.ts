@@ -38,10 +38,14 @@ app.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-        Security Research
+        Audit Request
       </div>
-      <h1 class="audit-title">Audit Portal</h1>
-      <p class="audit-subtitle">// get started</p>
+      <h1 class="audit-title">Secure your protocol.</h1>
+      <p class="audit-subtitle">
+        <span style="color: var(--color-primary-400); font-weight: 600;">⚡ Onboarding in < 6 hours.</span>
+        <span style="margin: 0 0.5rem; opacity: 0.3;">|</span>
+        Subsidized for zkVMs.
+      </p>
       <h2 class="audit-heading">Audits by cryptography experts.</h2>
       <p class="audit-description">
         Tell us about your project so we can scope your audit and provide a tailored quote. 
@@ -54,10 +58,6 @@ app.innerHTML = `
   <section class="audit-form-section">
     <div class="audit-form-container">
       
-      <!-- Form Title -->
-      <h3 class="form-title">Book an Audit</h3>
-      <p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
-
       <!-- Form -->
       <form class="audit-form" action="https://formsubmit.co/zippellabs@gmail.com" method="POST">
         
@@ -68,107 +68,74 @@ app.innerHTML = `
         <input type="hidden" name="_next" value="https://zippellabs.github.io/?submitted=true">
         <input type="text" name="_honey" style="display:none">
         
-        <!-- Project Type -->
-        <div class="form-group">
-          <label class="form-label">Project Type</label>
-          <div class="form-chips">
-            <label class="form-chip">
-              <input type="checkbox" name="type" value="zkp" />
-              <span>Zero-Knowledge Proofs</span>
-            </label>
-            <label class="form-chip">
-              <input type="checkbox" name="type" value="mpc" />
-              <span>Multi-Party Computation</span>
-            </label>
-            <label class="form-chip">
-              <input type="checkbox" name="type" value="fhe" />
-              <span>Fully Homomorphic Encryption</span>
-            </label>
-            <label class="form-chip">
-              <input type="checkbox" name="type" value="smart-contract" />
-              <span>Smart Contracts</span>
-            </label>
-            <label class="form-chip">
-              <input type="checkbox" name="type" value="other" />
-              <span>Other Cryptography</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Project Name -->
-        <div class="form-group">
-          <label class="form-label" for="project-name">Project Name</label>
-          <input type="text" id="project-name" name="project_name" class="form-input" placeholder="Your project name" required />
-        </div>
-
-        <!-- Description -->
-        <div class="form-group">
-          <label class="form-label" for="description">Project Description</label>
-          <textarea id="description" name="description" class="form-textarea" rows="4" placeholder="Describe your project, its purpose, and what you'd like us to audit..." required></textarea>
-        </div>
-
-        <!-- Repository URL -->
-        <div class="form-group">
-          <label class="form-label" for="repo">Repository URL</label>
-          <input type="url" id="repo" name="repository" class="form-input" placeholder="https://github.com/..." />
-          <span class="form-hint">Private repositories can be shared after initial contact</span>
-        </div>
-
-        <!-- Codebase Size -->
+        <!-- Project Info -->
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="loc">Estimated Lines of Code</label>
-            <select id="loc" name="lines_of_code" class="form-select">
-              <option value="">Select range</option>
-              <option value="<1k">&lt; 1,000</option>
-              <option value="1k-5k">1,000 - 5,000</option>
-              <option value="5k-10k">5,000 - 10,000</option>
-              <option value="10k-25k">10,000 - 25,000</option>
-              <option value=">25k">&gt; 25,000</option>
-            </select>
+            <label class="form-label" for="project-name">Project Name</label>
+            <input type="text" id="project-name" name="project_name" class="form-input" placeholder="e.g. ZkDex" required />
           </div>
           <div class="form-group">
-            <label class="form-label" for="language">Primary Language</label>
-            <select id="language" name="language" class="form-select">
-              <option value="">Select language</option>
-              <option value="rust">Rust</option>
-              <option value="solidity">Solidity</option>
-              <option value="cairo">Cairo</option>
-              <option value="circom">Circom</option>
-              <option value="go">Go</option>
-              <option value="c++">C++</option>
+            <label class="form-label" for="stage">Project Stage</label>
+            <select id="stage" name="stage" class="form-select">
+              <option value="">Select stage</option>
+              <option value="development">In Development</option>
+              <option value="testnet">Testnet Live</option>
+              <option value="mainnet">Mainnet Live</option>
+              <option value="idea">Idea / Research</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="tech">Primary Technology</label>
+            <select id="tech" name="technology" class="form-select">
+              <option value="">Select technology</option>
+              <option value="zkp">Zero-Knowledge Proofs</option>
+              <option value="zkvm">zkVM Application</option>
+              <option value="mpc">MPC System</option>
+              <option value="contracts">Smart Contracts</option>
               <option value="other">Other</option>
             </select>
           </div>
+          <div class="form-group">
+            <label class="form-label" for="start_date">Ideal Start Date</label>
+            <input type="text" id="start_date" name="start_date" class="form-input" placeholder="ASAP or YYYY-MM-DD" />
+          </div>
         </div>
 
-        <!-- Timeline -->
         <div class="form-group">
-          <label class="form-label" for="timeline">Desired Timeline</label>
-          <select id="timeline" name="timeline" class="form-select">
-            <option value="">Select timeline</option>
-            <option value="urgent">Urgent (1-2 weeks)</option>
-            <option value="standard">Standard (2-4 weeks)</option>
-            <option value="extended">Extended (4-8 weeks)</option>
-            <option value="flexible">Flexible</option>
-          </select>
+          <label class="form-label" for="repo">Repository URL</label>
+          <input type="url" id="repo" name="repository" class="form-input" placeholder="https://github.com/..." />
         </div>
 
-        <!-- Contact -->
+        <!-- Referral (Quick Check) -->
+        <div class="form-group">
+          <label class="form-label" for="referral">How did you hear about us?</label>
+          <input type="text" id="referral" name="referral" class="form-input" placeholder="e.g. Twitter..." />
+        </div>
+
+        <!-- Contact (Social First) -->
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com" required />
+            <label class="form-label" for="telegram">Telegram (Required)</label>
+            <input type="text" id="telegram" name="telegram" class="form-input" placeholder="@handle" required />
           </div>
           <div class="form-group">
-            <label class="form-label" for="telegram">Telegram (optional)</label>
-            <input type="text" id="telegram" name="telegram" class="form-input" placeholder="@username" />
+            <label class="form-label" for="twitter">Twitter / X (Required)</label>
+            <input type="text" id="twitter" name="twitter" class="form-input" placeholder="@handle" required />
           </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email (Required)</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com" required />
         </div>
 
         <!-- Submit -->
         <button type="submit" class="form-submit">
-          Submit Request
+          Request Quote
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -220,7 +187,6 @@ app.innerHTML = `
   <footer class="footer minimal">
     <div class="footer-inner">
       <span class="footer-copyright">© <a href="https://x.com/Zippel_Labs" style="color: inherit; text-decoration: none;">ZippelLabs</a> • by <a href="https://x.com/thisvishalsingh" style="color: inherit; text-decoration: none;">thisvishalsingh</a></span>
-      <span class="footer-license">MIT / Apache 2.0</span>
     </div>
   </footer>
 `
