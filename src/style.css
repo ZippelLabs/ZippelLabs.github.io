@@ -1569,6 +1569,7 @@ body {
     flex-direction: column;
     width: 100%;
     max-width: 300px;
+    margin: 0 auto;
   }
 
   .btn-primary,
@@ -1840,6 +1841,11 @@ body {
   /* Audits page mobile header fix - hide "Back to Home" link */
   .audit-nav-link {
     display: none;
+  }
+
+  /* Center CTA buttons on mobile */
+  .cta-section .hero-cta {
+    align-items: center;
   }
 }
 

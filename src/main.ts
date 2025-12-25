@@ -88,8 +88,8 @@ app.innerHTML = `
         ZippelLabs
       </a>
       <div class="nav-links">
-        <a href="https://t.me/thisvishalsingh" class="btn-primary">
-          Start a Conversation
+        <a href="/audits.html" class="btn-primary">
+          Get a Quote
         </a>
         <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -103,8 +103,7 @@ app.innerHTML = `
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-links">
-      <a href="/zp1.html" class="mobile-menu-link">ZP1</a>
-      <a href="/audits.html" class="mobile-menu-link">Audits</a>
+      <a href="/audits.html" class="mobile-menu-link">Get a Quote</a>
       <a href="https://t.me/thisvishalsingh" class="mobile-menu-link">Telegram</a>
       <a href="https://x.com/Zippel_Labs" class="mobile-menu-link">X (Twitter)</a>
       <a href="https://github.com/ZippelLabs" class="mobile-menu-link">GitHub</a>
@@ -166,14 +165,6 @@ app.innerHTML = `
       ZK circuits. zkVMs. Cryptographic protocols.<br/>
       <strong style="color: var(--color-primary-400);">Subsidized rates for zkVM teams.</strong>
     </p>
-    <div class="hero-cta animate-fade-in" style="animation-delay: 0.3s">
-      <a href="/audits.html" class="btn-primary">
-        Get a Quote
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
   </section>
 
   <!-- Three Pillars Section -->
@@ -218,7 +209,7 @@ app.innerHTML = `
             style="border-radius: 8px;">
           </iframe>
         </div>
-        <a href="/zp1.html" class="pillar-link">Explore ZP1 →</a>
+        <a href="https://github.com/ZippelLabs/zp1" class="pillar-link" target="_blank">View on GitHub →</a>
       </div>
 
       <!-- Research Pillar -->
@@ -295,12 +286,17 @@ app.innerHTML = `
   <!-- CTA Section -->
   <section class="section cta-section">
     <h2 class="section-heading">Ready to secure your project?</h2>
-    <a href="/audits.html" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
-      Get a Quote
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
+    <div class="hero-cta" style="margin-top: 2rem;">
+      <a href="/audits.html" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+        Get a Quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="https://t.me/thisvishalsingh" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+        Start a Conversation
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
