@@ -1607,8 +1607,10 @@ body {
   }
 
   .footer-links {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
   }
 
   .footer-bottom {
@@ -1811,6 +1813,33 @@ body {
 
   .footer.minimal .footer-inner {
     gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Mobile header improvements */
+  .nav-container {
+    padding: 0.75rem 1rem;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  /* Partner section mobile fixes */
+  .partner-tweet-card {
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  .partner-info {
+    text-align: center;
+  }
+
+  .partner-link {
+    justify-content: center;
+  }
+
+  /* Audits page mobile header fix - hide "Back to Home" link */
+  .audit-nav-link {
+    display: none;
   }
 }
 
