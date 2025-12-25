@@ -1,4 +1,4 @@
-import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-container");e&&window.addEventListener("scroll",()=>{window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled")})}function o(){const e={threshold:.1,rootMargin:"0px 0px -50px 0px"},t=new IntersectionObserver(i=>{i.forEach(a=>{a.isIntersecting&&(a.target.classList.remove("opacity-0"),a.target.classList.add("animate-fade-in-up"),t.unobserve(a.target))})},e);document.querySelectorAll(".animate-on-scroll").forEach(i=>{i.classList.add("opacity-0"),t.observe(i)})}function l(){document.querySelectorAll(".expand-trigger").forEach(e=>{e.addEventListener("click",()=>{const t=document.getElementById(e.getAttribute("data-target")||"");t&&(t.classList.toggle("expanded"),e.classList.toggle("active"))})})}function r(){const e=document.getElementById("mobile-menu-toggle"),t=document.getElementById("mobile-menu");e&&t&&(e.addEventListener("click",()=>{t.classList.toggle("open")}),t.querySelectorAll(".mobile-menu-link").forEach(i=>{i.addEventListener("click",()=>{t.classList.remove("open")})}),document.addEventListener("click",i=>{!t.contains(i.target)&&!e.contains(i.target)&&t.classList.remove("open")}))}const n=document.querySelector("#app");n.innerHTML=`
+import"./style-Dfz3iTSm.js";function s(){const e=document.querySelector(".nav-container");e&&window.addEventListener("scroll",()=>{window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled")})}function o(){const e={threshold:.1,rootMargin:"0px 0px -50px 0px"},t=new IntersectionObserver(a=>{a.forEach(i=>{i.isIntersecting&&(i.target.classList.remove("opacity-0"),i.target.classList.add("animate-fade-in-up"),t.unobserve(i.target))})},e);document.querySelectorAll(".animate-on-scroll").forEach(a=>{a.classList.add("opacity-0"),t.observe(a)})}function l(){document.querySelectorAll(".expand-trigger").forEach(e=>{e.addEventListener("click",()=>{const t=document.getElementById(e.getAttribute("data-target")||"");t&&(t.classList.toggle("expanded"),e.classList.toggle("active"))})})}function r(){const e=document.getElementById("mobile-menu-toggle"),t=document.getElementById("mobile-menu");e&&t&&(e.addEventListener("click",()=>{t.classList.toggle("open")}),t.querySelectorAll(".mobile-menu-link").forEach(a=>{a.addEventListener("click",()=>{t.classList.remove("open")})}),document.addEventListener("click",a=>{!t.contains(a.target)&&!e.contains(a.target)&&t.classList.remove("open")}))}const n=document.querySelector("#app");n.innerHTML=`
   <!-- Navigation -->
   <nav class="nav-container">
     <div class="nav-inner">
@@ -7,8 +7,8 @@ import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-co
         ZippelLabs
       </a>
       <div class="nav-links">
-        <a href="https://t.me/thisvishalsingh" class="btn-primary">
-          Start a Conversation
+        <a href="/audits.html" class="btn-primary">
+          Get a Quote
         </a>
         <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -22,8 +22,7 @@ import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-co
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-links">
-      <a href="/zp1.html" class="mobile-menu-link">ZP1</a>
-      <a href="/audits.html" class="mobile-menu-link">Audits</a>
+      <a href="/audits.html" class="mobile-menu-link">Get a Quote</a>
       <a href="https://t.me/thisvishalsingh" class="mobile-menu-link">Telegram</a>
       <a href="https://x.com/Zippel_Labs" class="mobile-menu-link">X (Twitter)</a>
       <a href="https://github.com/ZippelLabs" class="mobile-menu-link">GitHub</a>
@@ -85,14 +84,6 @@ import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-co
       ZK circuits. zkVMs. Cryptographic protocols.<br/>
       <strong style="color: var(--color-primary-400);">Subsidized rates for zkVM teams.</strong>
     </p>
-    <div class="hero-cta animate-fade-in" style="animation-delay: 0.3s">
-      <a href="/audits.html" class="btn-primary">
-        Get a Quote
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
   </section>
 
   <!-- Three Pillars Section -->
@@ -137,7 +128,7 @@ import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-co
             style="border-radius: 8px;">
           </iframe>
         </div>
-        <a href="/zp1.html" class="pillar-link">Explore ZP1 →</a>
+        <a href="https://github.com/ZippelLabs/zp1" class="pillar-link" target="_blank">View on GitHub →</a>
       </div>
 
       <!-- Research Pillar -->
@@ -214,12 +205,17 @@ import"./style-ACNyfMTi.js";function s(){const e=document.querySelector(".nav-co
   <!-- CTA Section -->
   <section class="section cta-section">
     <h2 class="section-heading">Ready to secure your project?</h2>
-    <a href="/audits.html" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
-      Get a Quote
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
+    <div class="hero-cta" style="margin-top: 2rem;">
+      <a href="/audits.html" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+        Get a Quote
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="https://t.me/thisvishalsingh" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+        Start a Conversation
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
