@@ -38,148 +38,267 @@ app.innerHTML = `
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-        Audit Request
+        Request a Quote
       </div>
       <h1 class="audit-title">Secure your protocol.</h1>
       <p class="audit-subtitle">
-        <span style="color: var(--color-primary-400); font-weight: 600;">⚡ Onboarding in < 6 hours.</span>
+        <span style="color: var(--color-primary-400); font-weight: 600;">⚡ Onboarding in < 6 hours</span>
         <span style="margin: 0 0.5rem; opacity: 0.3;">|</span>
-        Subsidized for zkVMs.
-      </p>
-      <h2 class="audit-heading">Audits by cryptography experts.</h2>
-      <p class="audit-description">
-        Tell us about your project so we can scope your audit and provide a tailored quote. 
-        We specialize in <strong>ZKPs</strong>, <strong>MPC</strong>, and <strong>FHE</strong> systems.
+        Subsidized rates for ecosystem projects
       </p>
     </div>
   </section>
 
-  <!-- Audit Form Section -->
-  <section class="audit-form-section">
-    <div class="audit-form-container">
-      
-      <!-- Form -->
-      <form class="audit-form" action="https://formsubmit.co/zippellabs@gmail.com" method="POST">
-        
-        <!-- FormSubmit Configuration -->
-        <input type="hidden" name="_subject" value="New Audit Request - ZippelLabs">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://zippellabs.github.io/?submitted=true">
-        <input type="text" name="_honey" style="display:none">
-        
-        <!-- Project Info -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="project-name">Project Name</label>
-            <input type="text" id="project-name" name="project_name" class="form-input" placeholder="e.g. ZkDex" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="stage">Project Stage</label>
-            <select id="stage" name="stage" class="form-select">
-              <option value="">Select stage</option>
-              <option value="development">In Development</option>
-              <option value="testnet">Testnet Live</option>
-              <option value="mainnet">Mainnet Live</option>
-              <option value="idea">Idea / Research</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Technical Details -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="tech">Primary Technology</label>
-            <select id="tech" name="technology" class="form-select">
-              <option value="">Select technology</option>
-              <option value="zkp">Zero-Knowledge Proofs</option>
-              <option value="zkvm">zkVM Application</option>
-              <option value="mpc">MPC System</option>
-              <option value="contracts">Smart Contracts</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="start_date">Ideal Start Date</label>
-            <input type="text" id="start_date" name="start_date" class="form-input" placeholder="ASAP or YYYY-MM-DD" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="repo">Repository URL</label>
-          <input type="url" id="repo" name="repository" class="form-input" placeholder="https://github.com/..." />
-        </div>
-
-        <!-- Referral (Quick Check) -->
-        <div class="form-group">
-          <label class="form-label" for="referral">How did you hear about us?</label>
-          <input type="text" id="referral" name="referral" class="form-input" placeholder="e.g. Twitter..." />
-        </div>
-
-        <!-- Contact (Social First) -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="telegram">Telegram (Required)</label>
-            <input type="text" id="telegram" name="telegram" class="form-input" placeholder="@handle" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="twitter">Twitter / X (Required)</label>
-            <input type="text" id="twitter" name="twitter" class="form-input" placeholder="@handle" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="email">Email (Required)</label>
-          <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com" required />
-        </div>
-
-        <!-- Submit -->
-        <button type="submit" class="form-submit">
-          Request Quote
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-
-      </form>
-
+  <!-- Value Proposition Banner -->
+  <section class="quote-value-banner">
+    <div class="quote-value-inner">
+      <div class="quote-value-item">
+        <span class="quote-value-number">Free</span>
+        <span class="quote-value-label">Up to 1k LOC</span>
+      </div>
+      <div class="quote-value-divider"></div>
+      <div class="quote-value-item">
+        <span class="quote-value-number">6+</span>
+        <span class="quote-value-label">Critical/High Findings</span>
+      </div>
+      <div class="quote-value-divider"></div>
+      <div class="quote-value-item">
+        <span class="quote-value-number">Flexible</span>
+        <span class="quote-value-label">Team Scales with Scope</span>
+      </div>
     </div>
   </section>
 
-  <!-- Info Cards -->
-  <section class="audit-info-section">
-    <div class="audit-info-grid">
+  <!-- Main Content Grid -->
+  <section class="quote-main-section">
+    <div class="quote-main-grid">
       
-      <div class="audit-info-card">
-        <div class="info-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-        </div>
-        <h3>Expert Review</h3>
-        <p>Our team specializes in advanced cryptography including ZK circuits, MPC protocols, and FHE schemes.</p>
+      <!-- Left Column: Form -->
+      <div class="quote-form-column">
+        <h2 class="quote-form-title">Tell us about your project</h2>
+        <p class="quote-form-subtitle">We'll scope your audit and provide a tailored quote within 24 hours.</p>
+        
+        <!-- Form -->
+        <form class="audit-form" action="https://formsubmit.co/zippellabs@gmail.com" method="POST">
+          
+          <!-- FormSubmit Configuration -->
+          <input type="hidden" name="_subject" value="New Audit Request - ZippelLabs">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://zippellabs.github.io/?submitted=true">
+          <input type="text" name="_honey" style="display:none">
+          
+          <!-- Project Info -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="project-name">Project Name *</label>
+              <input type="text" id="project-name" name="project_name" class="form-input" placeholder="e.g. Sonobe" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="project-type">Project Type *</label>
+              <select id="project-type" name="project_type" class="form-select" required>
+                <option value="">Select type</option>
+                <option value="ecosystem">🌱 Ecosystem / Public Good</option>
+                <option value="commercial">🏢 Commercial / VC-backed</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Technical Details -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="tech">Primary Technology *</label>
+              <select id="tech" name="technology" class="form-select" required>
+                <option value="">Select technology</option>
+                <option value="zkvm">zkVM Application</option>
+                <option value="zkp">⭕ ZK Circuits (Circom/🦀 Halo2/◆ Noir)</option>
+                <option value="stark">STARK Prover/Verifier</option>
+                <option value="mpc">MPC System</option>
+                <option value="fhe">FHE Implementation</option>
+                <option value="contracts">Smart Contracts</option>
+                <option value="other">Other Cryptographic System</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="stage">Project Stage</label>
+              <select id="stage" name="stage" class="form-select">
+                <option value="">Select stage</option>
+                <option value="development">In Development</option>
+                <option value="testnet">Testnet Live</option>
+                <option value="mainnet">Mainnet Live</option>
+                <option value="research">Research / Prototype</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Scope Details -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="loc">Estimated Lines of Code</label>
+              <input type="text" id="loc" name="estimated_loc" class="form-input" placeholder="e.g. ~5,000 LOC" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="start_date">Ideal Start Date</label>
+              <input type="text" id="start_date" name="start_date" class="form-input" placeholder="e.g. Early February 2026" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="repo">Repository URL</label>
+            <input type="url" id="repo" name="repository" class="form-input" placeholder="https://github.com/..." />
+            <span class="form-hint">Private repos can be shared after initial contact</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="scope">Scope Description</label>
+            <textarea id="scope" name="scope_description" class="form-textarea" rows="3" placeholder="Brief description of what you'd like audited (components, specific concerns, etc.)"></textarea>
+          </div>
+
+          <!-- Contact -->
+          <div class="form-section-label">Contact Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="telegram">Telegram *</label>
+              <input type="text" id="telegram" name="telegram" class="form-input" placeholder="@handle" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="twitter">Twitter / X *</label>
+              <input type="text" id="twitter" name="twitter" class="form-input" placeholder="@handle" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email *</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="you@project.xyz" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="referral">How did you hear about us?</label>
+            <input type="text" id="referral" name="referral" class="form-input" placeholder="Twitter, referral, etc." />
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="form-submit">
+            Request Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+
+        </form>
       </div>
 
-      <div class="audit-info-card">
-        <div class="info-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
+      <!-- Right Column: Info -->
+      <div class="quote-info-column">
+        
+        <!-- Pricing Transparency -->
+        <div class="quote-info-card">
+          <h3 class="quote-info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            Startup-Friendly Pricing
+          </h3>
+          <div class="pricing-comparison">
+            <div class="pricing-row pricing-ours" style="background: rgba(34, 211, 238, 0.1); border-color: rgba(34, 211, 238, 0.3);">
+              <span class="pricing-label">Small Projects (&lt;1k LOC)</span>
+              <span class="pricing-value" style="color: #22d3ee;">Free</span>
+            </div>
+            <div class="pricing-row pricing-ours">
+              <span class="pricing-label">Standard Engagement</span>
+              <span class="pricing-value">Competitive<span class="pricing-unit"> rates</span></span>
+            </div>
+          </div>
+          <p class="pricing-note">
+            Team scales based on scope. We bring in top independent security researchers as needed.
+          </p>
         </div>
-        <h3>Detailed Reports</h3>
-        <p>Comprehensive findings with severity ratings, exploit scenarios, and actionable remediation steps.</p>
-      </div>
 
-      <div class="audit-info-card">
-        <div class="info-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
+        <!-- What You'll Receive -->
+        <div class="quote-info-card">
+          <h3 class="quote-info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            What You'll Receive
+          </h3>
+          <ul class="deliverables-list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Real-time vulnerability access
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Comprehensive PDF audit report
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              PoC exploits for findings
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              Severity breakdown & recommendations
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <strong>Fix review included</strong>
+            </li>
+          </ul>
         </div>
-        <h3>Fast Turnaround</h3>
-        <p>Flexible timelines to match your needs, from urgent reviews to comprehensive deep-dives.</p>
-      </div>
 
+        <!-- Why ZippelLabs -->
+        <div class="quote-info-card">
+          <h3 class="quote-info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Why ZippelLabs
+          </h3>
+          <ul class="why-list">
+            <li>Building <strong>ZP1 zkVM</strong> (Circle STARKs)</li>
+            <li>Active researchers in zkVM, MPC, FHE security</li>
+            <li>Partner with <strong>Formal Land</strong> for formal verification</li>
+            <li>Network of top independent auditors</li>
+          </ul>
+          <div class="track-record">
+            <span class="track-record-label">Verified Findings</span>
+            <div class="track-record-items">
+              <a href="https://x.com/thisvishalsingh/status/2013338370961768821" target="_blank" class="track-item high">High in Goat Rollup</a>
+              <a href="https://x.com/thisvishalsingh/status/2014389859604168939" target="_blank" class="track-item">Medium in leanEthereum</a>
+              <span class="track-item">5+ top-10 contest finishes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow -->
+        <div class="quote-info-card quote-workflow">
+          <h3 class="quote-info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            How We Work
+          </h3>
+          <p class="workflow-text">
+            <strong>Async-first execution.</strong> We stay in deep work mode, communicating via Telegram for maximum efficiency. No daily sync meetings.
+          </p>
+          <div class="workflow-speed">
+            <span class="speed-label">Our Speed</span>
+            <span class="speed-value">~1 week per 1,000 LOC</span>
+            <span class="speed-compare">vs. industry ~3 weeks</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 

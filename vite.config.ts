@@ -6,6 +6,7 @@ export default defineConfig({
             input: {
                 main: 'index.html',
                 audits: 'audits.html',
+                research: 'research.html',
             },
         },
     },

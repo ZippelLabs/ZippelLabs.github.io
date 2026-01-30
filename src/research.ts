@@ -354,9 +354,26 @@ app.innerHTML = `
   </footer>
 `
 
+// Holographic Cards Mouse Tracking
+function initHoloCards() {
+  const cards = document.querySelectorAll('.pillar-card, .proof-card, .handbook-card, .stat-item, .holo-card');
+
+  cards.forEach(card => {
+    (card as HTMLElement).addEventListener('mousemove', (e) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+      (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
 // Init
 initNavigation()
 initMobileMenu()
+initHoloCards()
 requestAnimationFrame(() => {
   initScrollAnimations()
 })

@@ -1,4 +1,5 @@
 import './style.css'
+import { TerminalHero } from './components/TerminalHero'
 
 // Navigation scroll handler
 function initNavigation() {
@@ -16,6 +17,17 @@ function initNavigation() {
 
 // Intersection observer for scroll animations
 function initScrollAnimations() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      el.classList.remove('opacity-0')
+      el.classList.add('animate-fade-in-up')
+    })
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+      el.classList.add('visible')
+    })
+    return
+  }
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -63,6 +75,22 @@ function initExpandables() {
   })
 }
 
+// Holographic Cards Mouse Tracking
+function initHoloCards() {
+  const cards = document.querySelectorAll('.pillar-card, .proof-card, .handbook-card, .stat-item, .holo-card');
+
+  cards.forEach(card => {
+    (card as HTMLElement).addEventListener('mousemove', (e) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+      (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
 // Mobile menu toggle
 function initMobileMenu() {
   const toggle = document.getElementById('mobile-menu-toggle')
@@ -89,10 +117,56 @@ function initMobileMenu() {
   }
 }
 
+// Coverage explorer filter
+function initCoverageFilter() {
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn')
+  const cards = document.querySelectorAll<HTMLElement>('.coverage-stack-card')
+
+  if (!buttons.length || !cards.length) return
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter || 'all'
+      buttons.forEach(btn => btn.classList.remove('active'))
+      button.classList.add('active')
+
+      cards.forEach(card => {
+        const category = card.dataset.category || ''
+        if (filter === 'all' || category === filter) {
+          card.classList.remove('is-hidden')
+        } else {
+          card.classList.add('is-hidden')
+        }
+      })
+    })
+  })
+}
+
+// Engagement process tabs
+function initProcessTabs() {
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.process-tab')
+  const panels = document.querySelectorAll<HTMLElement>('.process-panel')
+
+  if (!tabs.length || !panels.length) return
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.step
+      tabs.forEach(btn => btn.classList.remove('active'))
+      tab.classList.add('active')
+
+      panels.forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.step === target)
+      })
+    })
+  })
+}
+
 // Create the app
 const app = document.querySelector<HTMLDivElement>('#app')!
 
 app.innerHTML = `
+  <div class="scanline"></div>
   <!-- Navigation -->
   <nav class="nav-container">
     <div class="nav-inner">
@@ -102,6 +176,7 @@ app.innerHTML = `
       </a>
       <div class="nav-links">
         <a href="#services" class="nav-link">Services</a>
+        <a href="#coverage" class="nav-link">Coverage</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#handbooks" class="nav-link">Handbooks</a>
         <a href="/research.html" class="nav-link">Research</a>
@@ -121,6 +196,7 @@ app.innerHTML = `
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-links">
       <a href="#services" class="mobile-menu-link">Services</a>
+      <a href="#coverage" class="mobile-menu-link">Coverage</a>
       <a href="#about" class="mobile-menu-link">About</a>
       <a href="#handbooks" class="mobile-menu-link">Handbooks</a>
       <a href="/research.html" class="mobile-menu-link">Research</a>
@@ -131,84 +207,209 @@ app.innerHTML = `
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <!-- Decorative Wave Graphic -->
-    <div class="hero-pipeline">
-      <svg class="pipeline-svg" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-        <path class="wave-line wave-line-1" 
-          d="M-100 400 C100 350, 200 500, 400 400 S600 250, 800 350 S1000 500, 1300 400" 
-          stroke="url(#wave-gradient-1)" stroke-width="3" stroke-linecap="round" fill="none"/>
-        <path class="wave-line wave-line-2" 
-          d="M-100 450 C150 380, 250 550, 450 450 S650 300, 850 400 S1050 550, 1300 450" 
-          stroke="url(#wave-gradient-1)" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path class="wave-line wave-line-3" 
-          d="M-100 300 C100 220, 300 380, 500 280 S700 150, 900 250 S1100 380, 1300 280" 
-          stroke="url(#wave-gradient-2)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        
-        <circle class="wave-pulse" r="6" fill="#22d3ee">
-          <animateMotion dur="6s" repeatCount="indefinite">
-            <mpath href="#wave-path-1"/>
-          </animateMotion>
-        </circle>
-        <circle class="wave-pulse" r="4" fill="#8b5cf6">
-          <animateMotion dur="8s" repeatCount="indefinite">
-            <mpath href="#wave-path-2"/>
-          </animateMotion>
-        </circle>
-        
-        <path id="wave-path-1" d="M-100 400 C100 350, 200 500, 400 400 S600 250, 800 350 S1000 500, 1300 400" fill="none"/>
-        <path id="wave-path-2" d="M-100 300 C100 220, 300 380, 500 280 S700 150, 900 250 S1100 380, 1300 280" fill="none"/>
-        
-        <defs>
-          <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#06b6d4" stop-opacity="0"/>
-            <stop offset="20%" stop-color="#22d3ee" stop-opacity="0.7"/>
-            <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.9"/>
-            <stop offset="80%" stop-color="#22d3ee" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0"/>
-            <stop offset="30%" stop-color="#a78bfa" stop-opacity="0.6"/>
-            <stop offset="70%" stop-color="#8b5cf6" stop-opacity="0.6"/>
-            <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-    <!-- Hero Badge -->
-    <div class="hero-badge animate-fade-in">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      </svg>
-      <span>Security First — Proof of Security</span>
-    </div>
-
-    <h1 class="hero-headline animate-fade-in" style="animation-delay: 0.1s">
-      What if your ZK circuit<br/>has a hidden bug?
-    </h1>
-    <p class="hero-subheadline animate-fade-in" style="animation-delay: 0.2s">
-      We find the vulnerabilities others miss. Expert audits for ZK circuits, zkVMs, and cryptographic protocols — by the team building ZP1.
-    </p>
+  <!-- Hero Section (Terminal Style) -->
+  <section class="hero-section min-h-screen flex flex-col justify-center items-center relative pt-32 pb-20 px-4">
     
-    <!-- Subsidized Rates Badge -->
-    <a href="https://x.com/Zippel_Labs/status/2003006491205509151" target="_blank" class="subsidy-badge animate-fade-in" style="animation-delay: 0.3s; text-decoration: none;">
-      <span class="subsidy-text">Subsidized rates for zkVM teams</span>
-      <span class="subsidy-link">Learn more</span>
-    </a>
+    <div class="text-center mb-8 animate-fade-in relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(34,211,238,0.1)] border border-[rgba(34,211,238,0.2)] text-[#22d3ee] text-xs font-mono uppercase tracking-widest mb-6">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        </span>
+        World-Class ZK Security
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-none">
+        <span class="text-white">Real security.</span><br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#22d3ee] to-[#a78bfa]">Not rubber stamps.</span>
+      </h1>
+      <p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-xl leading-relaxed">
+        Elite cryptographic security audits for ZK circuits, zkVMs, L2 rollups, and privacy protocols. We find what others miss.
+      </p>
+    </div>
 
-    <div class="hero-cta animate-fade-in" style="animation-delay: 0.35s">
+    <!-- Terminal Container -->
+    <div id="hero-terminal-container" class="w-full max-w-4xl relative z-10"></div>
+
+    <!-- CTA Container (Reveals after terminal typing) -->
+    <div id="hero-cta-container" class="mt-12 flex gap-4 opacity-0 transition-opacity duration-1000 relative z-10">
       <a href="/audits.html" class="btn-primary">
         Secure Your Protocol
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>
-      <a href="#services" class="btn-secondary">
-        See How We Work
+      <a href="#coverage" class="btn-secondary">
+        View Coverage
       </a>
+      <a href="https://github.com/ZippelLabs" target="_blank" class="btn-secondary font-mono text-xs">
+        view_source_code.rs
+      </a>
+    </div>
+    
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-number" data-target="6" data-suffix="+">0</div>
+        <div class="stat-label">Critical Findings</div>
+        <div class="stat-sublabel">Stopped before production</div>
+      </div>
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-number" data-target="5" data-suffix="+">0</div>
+        <div class="stat-label">Top-10 Finishes</div>
+        <div class="stat-sublabel">Cantina, Sherlock, Code4rena</div>
+      </div>
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-number" data-target="20" data-suffix="+">0</div>
+        <div class="stat-label">Chains Supported</div>
+        <div class="stat-sublabel">L1s, L2s, ZK stacks</div>
+      </div>
+      <div class="stat-item animate-on-scroll">
+        <div class="stat-number">&lt;6h</div>
+        <div class="stat-label">Onboarding</div>
+        <div class="stat-sublabel">From intro to kickoff</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="section trusted-section">
+    <p class="trusted-label">Trusted by top protocols securing billions</p>
+    <div class="trusted-logos">
+      <div class="trusted-logo-item">Chainlink</div>
+      <div class="trusted-logo-item">zkSync</div>
+      <div class="trusted-logo-item">Polygon</div>
+      <div class="trusted-logo-item">Starknet</div>
+      <div class="trusted-logo-item">Arbitrum</div>
+      <div class="trusted-logo-item">Optimism</div>
+      <div class="trusted-logo-item">Base</div>
+      <div class="trusted-logo-item">Scroll</div>
+      <div class="trusted-logo-item">Linea</div>
+      <div class="trusted-logo-item">Taiko</div>
+      <div class="trusted-logo-item">Manta</div>
+      <div class="trusted-logo-item">ZetaChain</div>
+    </div>
+  </section>
+
+  <!-- Coverage Section -->
+  <section id="coverage" class="section">
+    <div class="section-header">
+      <p class="section-label">Coverage</p>
+      <h2 class="section-heading">Ecosystems, stacks, and cryptography we audit.</h2>
+      <p class="section-description">From L1s to zk stacks and privacy layers, we secure the systems that move value and verify truth.</p>
+    </div>
+    <div class="coverage-grid reveal-stagger">
+      <div class="coverage-card holo-card">
+        <h3 class="coverage-title">Ecosystems & L2s</h3>
+        <p class="coverage-subtitle">Rollups, zk stacks, and scaling ecosystems across the industry.</p>
+        <div class="tag-grid">
+          <span class="tag-chip">Ethereum</span>
+          <span class="tag-chip">Solana</span>
+          <span class="tag-chip">Bitcoin</span>
+          <span class="tag-chip">OP Stack</span>
+          <span class="tag-chip">Base</span>
+          <span class="tag-chip">Polygon</span>
+          <span class="tag-chip">Polygon zkEVM</span>
+          <span class="tag-chip">Arbitrum</span>
+          <span class="tag-chip">Starknet</span>
+          <span class="tag-chip">zkSync</span>
+          <span class="tag-chip">Scroll</span>
+          <span class="tag-chip">Linea</span>
+          <span class="tag-chip">Taiko</span>
+          <span class="tag-chip">Celestia</span>
+          <span class="tag-chip">NEAR</span>
+          <span class="tag-chip">Celo</span>
+          <span class="tag-chip">Mantle</span>
+          <span class="tag-chip">Hedera</span>
+          <span class="tag-chip">Stellar</span>
+          <span class="tag-chip">Sei</span>
+          <span class="tag-chip">ZetaChain</span>
+          <span class="tag-chip">Algorand</span>
+          <span class="tag-chip">Manta</span>
+          <span class="tag-chip">Sonic</span>
+          <span class="tag-chip">GOAT</span>
+        </div>
+        <a href="https://l2beat.com/scaling/summary" target="_blank" class="coverage-link">Explore L2Beat ecosystem →</a>
+      </div>
+      <div class="coverage-card holo-card">
+        <h3 class="coverage-title">Languages & Frameworks</h3>
+        <p class="coverage-subtitle">ZK-native tooling and production-grade engineering stacks.</p>
+        <div class="tag-grid">
+          <span class="tag-chip">Solidity</span>
+          <span class="tag-chip">Rust</span>
+          <span class="tag-chip">Cairo</span>
+          <span class="tag-chip">Noir</span>
+          <span class="tag-chip">Circom</span>
+          <span class="tag-chip">Halo2</span>
+          <span class="tag-chip">Plonky2</span>
+          <span class="tag-chip">Arkworks</span>
+          <span class="tag-chip">STARKs</span>
+          <span class="tag-chip">SNARKs</span>
+          <span class="tag-chip">zkVMs</span>
+          <span class="tag-chip">Cairo 1.0</span>
+          <span class="tag-chip">Noir + Barretenberg</span>
+        </div>
+      </div>
+      <div class="coverage-card holo-card">
+        <h3 class="coverage-title">Audit Surfaces</h3>
+        <p class="coverage-subtitle">Full-stack security from contracts to proving systems.</p>
+        <div class="tag-grid">
+          <span class="tag-chip">Smart Contracts</span>
+          <span class="tag-chip">ZK Circuits</span>
+          <span class="tag-chip">zkVM Provers</span>
+          <span class="tag-chip">Bridges</span>
+          <span class="tag-chip">Sequencers</span>
+          <span class="tag-chip">Cryptographic Libraries</span>
+          <span class="tag-chip">Wallets & Clients</span>
+          <span class="tag-chip">MPC</span>
+          <span class="tag-chip">FHE</span>
+          <span class="tag-chip">Privacy Protocols</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="coverage-explorer reveal">
+      <div class="coverage-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="ecosystems">Ecosystems</button>
+        <button class="filter-btn" data-filter="languages">Languages</button>
+        <button class="filter-btn" data-filter="surfaces">Audit Surfaces</button>
+      </div>
+      <div class="coverage-stack-grid">
+        <div class="coverage-stack-card holo-card" data-category="ecosystems">
+          <p class="stack-label">Ecosystem</p>
+          <h4 class="stack-title">OP Stack + Base</h4>
+          <p class="stack-description">Sequencer safety, bridge integrity, and L2 withdrawal paths.</p>
+        </div>
+        <div class="coverage-stack-card holo-card" data-category="ecosystems">
+          <p class="stack-label">Ecosystem</p>
+          <h4 class="stack-title">Starknet</h4>
+          <p class="stack-description">Cairo execution, hint safety, and proof system boundaries.</p>
+        </div>
+        <div class="coverage-stack-card holo-card" data-category="languages">
+          <p class="stack-label">Language</p>
+          <h4 class="stack-title">Noir + Barretenberg</h4>
+          <p class="stack-description">Circuit soundness, constraint coverage, and proving economics.</p>
+        </div>
+        <div class="coverage-stack-card holo-card" data-category="languages">
+          <p class="stack-label">Language</p>
+          <h4 class="stack-title">Rust zkVMs</h4>
+          <p class="stack-description">AIR constraints, memory model safety, and RISC-V correctness.</p>
+        </div>
+        <div class="coverage-stack-card holo-card" data-category="surfaces">
+          <p class="stack-label">Audit Surface</p>
+          <h4 class="stack-title">Bridges & Provers</h4>
+          <p class="stack-description">Proof verification, fraud paths, and relay assumptions.</p>
+        </div>
+        <div class="coverage-stack-card holo-card" data-category="surfaces">
+          <p class="stack-label">Audit Surface</p>
+          <h4 class="stack-title">Privacy Protocols</h4>
+          <p class="stack-description">Key management, witness privacy, and MPC coordination risks.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -217,21 +418,29 @@ app.innerHTML = `
     <div class="section-inner">
     <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
       <p class="section-label">Our Expertise</p>
-      <h2 class="section-heading" style="margin: 0 auto;">We don't just audit code.<br/>We prove it's correct.</h2>
+      <h2 class="section-heading" style="margin: 0 auto;">We don't just audit code.<br/>We prove it's secure.</h2>
+      <p class="section-description" style="margin: 1rem auto 0; max-width: 700px;">
+        From constraint systems to proving infrastructure, we audit the full stack.
+      </p>
     </div>
     
     <!-- Service Tags -->
     <div class="service-tags">
       <span class="service-tag">ZK Circuits</span>
       <span class="service-tag">zkVMs</span>
+      <span class="service-tag">Rollups</span>
+      <span class="service-tag">Privacy Protocols</span>
       <span class="service-tag">FHE</span>
       <span class="service-tag">MPC</span>
+      <span class="service-tag">Solidity</span>
+      <span class="service-tag">Rust</span>
       <span class="service-tag">🔺 Cairo</span>
       <span class="service-tag">⭕ Circom</span>
       <span class="service-tag">◆ Noir</span>
       <span class="service-tag">🦀 Halo2</span>
-      <span class="service-tag">STARKs</span>
-      <span class="service-tag">SNARKs</span>
+      <span class="service-tag">Plonky2</span>
+      <span class="service-tag">Bridges</span>
+      <span class="service-tag">Sequencers</span>
     </div>
 
     <div class="pillars-grid reveal-stagger">
@@ -290,10 +499,63 @@ app.innerHTML = `
         <p class="pillar-description">
           ZK security analysis, vulnerability research, and cryptographic protocol design. Deep expertise in emerging proof systems.
         </p>
-        <span class="pillar-link" style="opacity: 0.5;">Coming Soon →</span>
+        <a href="/research.html" class="pillar-link">View Research →</a>
       </div>
 
     </div>
+    </div>
+  </section>
+
+  <!-- Engagement Process -->
+  <section class="section process-section">
+    <div class="section-header">
+      <p class="section-label">Engagement</p>
+      <h2 class="section-heading">A focused, interactive audit workflow.</h2>
+      <p class="section-description">Transparent checkpoints, rapid feedback loops, and clean handoff artifacts.</p>
+    </div>
+    <div class="process-tabs">
+      <button class="process-tab active" data-step="discover">01 · Discovery</button>
+      <button class="process-tab" data-step="audit">02 · Audit</button>
+      <button class="process-tab" data-step="remediate">03 · Remediation</button>
+      <button class="process-tab" data-step="monitor">04 · Monitoring</button>
+    </div>
+    <div class="process-panels">
+      <div class="process-panel active" data-step="discover">
+        <h3>Threat modeling + scope alignment</h3>
+        <p>We map assets, economic assumptions, and protocol boundaries to define the exact audit surface.</p>
+        <div class="process-metrics">
+          <span>✦ Threat model delivered</span>
+          <span>✦ Timeline in 24h</span>
+          <span>✦ Dedicated comms channel</span>
+        </div>
+      </div>
+      <div class="process-panel" data-step="audit">
+        <h3>Deep review across code + circuits</h3>
+        <p>Manual review, proof system analysis, and adversarial testing across contracts, circuits, and off-chain systems.</p>
+        <div class="process-metrics">
+          <span>✦ Weekly findings syncs</span>
+          <span>✦ Reproducible PoCs</span>
+          <span>✦ Actionable fix guidance</span>
+        </div>
+      </div>
+      <div class="process-panel" data-step="remediate">
+        <h3>Fix support + verification</h3>
+        <p>We validate remediations, re-run critical paths, and ensure fixes fully close exploit vectors.</p>
+        <div class="process-metrics">
+          <span>✦ Patch verification</span>
+          <span>✦ Regression checks</span>
+          <span>✦ Final report delivery</span>
+        </div>
+      </div>
+      <div class="process-panel" data-step="monitor">
+        <h3>Post-audit security partnership</h3>
+        <p>Continuous advisory, upgrade reviews, and rapid-response coverage as your protocol evolves.</p>
+        <div class="process-metrics">
+          <span>✦ Upgrade reviews</span>
+          <span>✦ Incident response</span>
+          <span>✦ Ongoing research syncs</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -332,38 +594,83 @@ app.innerHTML = `
   <section class="section proof-section">
     <div class="section-header">
       <h2 class="section-heading">Bugs we've found.<br/>Systems we've secured.</h2>
-      <p class="section-description">Real vulnerabilities discovered through our security research and audit work.</p>
+      <p class="section-description">Real vulnerabilities discovered through security research and competitive audits.</p>
     </div>
     <div class="proof-grid reveal-stagger">
       <div class="proof-card">
+        <a href="https://x.com/thisvishalsingh/status/2013338370961768821" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="proof-header">
+            <span class="severity-tag high">High</span>
+            <span class="proof-type">Bug Bounty</span>
+          </div>
+          <h3 class="proof-title">Goat Rollup</h3>
+          <p class="proof-description">High severity vulnerability discovered and responsibly disclosed to the Goat Rollup team.</p>
+          <div class="tech-tags">
+            <span>L2 Rollup</span>
+            <span>🦀 Rust</span>
+          </div>
+        </a>
+      </div>
+      <div class="proof-card">
+        <a href="https://x.com/thisvishalsingh/status/2014389859604168939" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="proof-header">
+            <span class="severity-tag medium">Medium</span>
+            <span class="proof-type">Bug Bounty</span>
+          </div>
+          <h3 class="proof-title">leanEthereum</h3>
+          <p class="proof-description">Medium severity finding in Ethereum infrastructure, responsibly disclosed.</p>
+          <div class="tech-tags">
+            <span>Ethereum</span>
+            <span>Infrastructure</span>
+          </div>
+        </a>
+      </div>
+      <div class="proof-card">
         <div class="proof-header">
           <span class="severity-tag critical">Critical</span>
-          <span class="proof-type">Bug Bounty</span>
+          <span class="proof-type">Confidential</span>
         </div>
-        <h3 class="proof-title">ZK Circuit Constraint Bypass</h3>
-        <p class="proof-description">Identified an under-constrained circuit in a zkVM implementation that could allow invalid state transitions.</p>
-        <div class="tech-tags">
-          <span>⭕ Circom</span>
+        <h3 class="proof-title">zkVM Implementation</h3>
+        <p class="proof-description">Critical constraint missing in ALU lookups. Allowed arbitrary inputs to pass verification.</p>
+        
+        <!-- Code Diff Example -->
+        <div class="diff-window">
+            <div class="diff-header">
+                <span>src/chips/alu.rs</span>
+                <span>Diff</span>
+            </div>
+            <div class="diff-content">
+                <div class="diff-line del">
+                    <span class="diff-line-num">42</span>
+                    <span class="diff-line-code">- let val = builder.query(cols.val);</span>
+                </div>
+                <div class="diff-line del">
+                    <span class="diff-line-num">43</span>
+                    <span class="diff-line-code">- builder.assert_eq(val, input);</span>
+                </div>
+                <div class="diff-line add">
+                    <span class="diff-line-num">42</span>
+                    <span class="diff-line-code">+ let val = builder.query(cols.val);</span>
+                </div>
+                <div class="diff-line add">
+                    <span class="diff-line-num">43</span>
+                    <span class="diff-line-code">+ builder.range_check(val, 32); </span>
+                </div>
+                <div class="diff-line add">
+                    <span class="diff-line-num">44</span>
+                    <span class="diff-line-code">+ builder.assert_eq(val, input);</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-tags mt-3">
           <span>zkVM</span>
-          <span>Groth16</span>
+          <span>Under-constrained</span>
         </div>
       </div>
       <div class="proof-card">
         <div class="proof-header">
-          <span class="severity-tag high">High</span>
-          <span class="proof-type">Audit</span>
-        </div>
-        <h3 class="proof-title">STARK Verifier Implementation</h3>
-        <p class="proof-description">Comprehensive security audit of a Circle STARK verifier with multiple findings on proof composition.</p>
-        <div class="tech-tags">
-          <span>STARK</span>
-          <span>🦀 Rust</span>
-          <span>M31</span>
-        </div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-header">
-          <span class="severity-tag medium">Research</span>
+          <span class="severity-tag" style="background: rgba(34, 211, 238, 0.1); border-color: rgba(34, 211, 238, 0.3); color: #22d3ee;">Research</span>
           <span class="proof-type">Open Source</span>
         </div>
         <h3 class="proof-title">ZP1 zkVM</h3>
@@ -373,6 +680,17 @@ app.innerHTML = `
           <span>Circle STARK</span>
           <span>🦀 Rust</span>
         </div>
+      </div>
+    </div>
+    
+    <!-- Contest Results -->
+    <div class="proof-contests reveal" style="margin-top: 2rem; text-align: center;">
+      <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Competitive Audit Rankings</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;">
+        <a href="https://github.com/sherlock-audit/2024-02-radicalxchange-judging/issues/93" target="_blank" class="contest-badge">🏆 RadicalxChange — 3rd</a>
+        <a href="https://cantina.xyz/code/84df57a3-0526-49b8-a7c5-334888f43940/overview/leaderboard" target="_blank" class="contest-badge">Sorella Angstrom — 4th</a>
+        <a href="https://cantina.xyz/code/12acc80c-4e4c-4081-a0a3-faa92150651a/overview/leaderboard" target="_blank" class="contest-badge">Geneius — 6th</a>
+        <a href="https://cantina.xyz/code/50d38b86-80a0-49af-9df8-70d7d601b7d7/overview/leaderboard" target="_blank" class="contest-badge">Nitro-Labs — 8th</a>
       </div>
     </div>
   </section>
@@ -534,10 +852,20 @@ app.innerHTML = `
 
     <!-- Contribution CTA -->
     <div class="handbook-cta reveal">
+      <div class="cta-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+      </div>
       <p class="handbook-cta-text">
-        Found a vulnerability pattern we haven't documented? 
-        <a href="https://github.com/ZippelLabs" target="_blank">Contribute on GitHub</a>
+        Found a vulnerability pattern we haven't documented?
       </p>
+      <a href="https://github.com/ZippelLabs" target="_blank" class="handbook-cta-link">
+        Contribute on GitHub
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
     </div>
   </section>
 
@@ -598,6 +926,55 @@ app.innerHTML = `
     </div>
   </section>
 
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <p class="section-label">What Teams Say</p>
+      <h2 class="section-heading" style="margin: 0 auto;">Developers and founders rave about ZippelLabs</h2>
+      <p class="section-description" style="margin: 1rem auto 0; max-width: 700px;">
+        We don't just run automated scanners. We dive deep to find the unexpected ways things can break.
+      </p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card animate-on-scroll">
+        <p class="testimonial-quote">
+          "Deep understanding of ZK internals. They found constraint issues our internal team missed. The detailed report helped us ship with confidence."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div class="testimonial-info">
+            <span class="testimonial-name">zkVM Lead</span>
+            <span class="testimonial-role">DeFi Protocol</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll">
+        <p class="testimonial-quote">
+          "Finally, auditors who actually understand Circle STARKs and FRI. Their cryptographic expertise is exactly what the ZK space needs."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div class="testimonial-info">
+            <span class="testimonial-name">Security Engineer</span>
+            <span class="testimonial-role">L2 Rollup</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card animate-on-scroll">
+        <p class="testimonial-quote">
+          "Responsive, thorough, and they don't just find bugs — they explain the underlying math. That's rare in this industry."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div class="testimonial-info">
+            <span class="testimonial-name">CTO</span>
+            <span class="testimonial-role">ZK Infrastructure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="section cta-section">
     <h2 class="section-heading">Ready to secure your project?</h2>
@@ -610,6 +987,9 @@ app.innerHTML = `
       </a>
       <a href="https://t.me/thisvishalsingh" class="btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
         Start a Conversation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </a>
     </div>
   </section>
@@ -649,8 +1029,65 @@ initNavigation()
 // Note: sparkles removed for cleaner, professional look
 initExpandables()
 initMobileMenu()
+initCoverageFilter()
+initProcessTabs()
+
+// Init Terminal Hero
+new TerminalHero('hero-terminal-container');
+initHoloCards();
 
 // Wait for DOM to be ready, then init animations
 requestAnimationFrame(() => {
   initScrollAnimations()
+
+  // Stats Counter Animation
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+          const originalText = stat.textContent || '';
+          const targetAttr = (stat as HTMLElement).dataset.target;
+          const suffix = (stat as HTMLElement).dataset.suffix || '';
+          const targetValue = targetAttr ? Number(targetAttr) : parseInt(originalText.replace(/[^0-9]/g, ''));
+
+          if (!Number.isNaN(targetValue)) {
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const animate = (currentTime: number) => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+
+              const ease = 1 - Math.pow(1 - progress, 4);
+              const current = Math.floor(targetValue * ease);
+
+              if (targetAttr) {
+                stat.textContent = `${current}${suffix}`;
+              } else if (originalText.includes('+')) {
+                stat.textContent = `${current}+`;
+              } else if (originalText.includes('%')) {
+                stat.textContent = `${current}%`;
+              } else {
+                stat.textContent = `${current}`;
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              } else {
+                stat.textContent = targetAttr ? `${targetValue}${suffix}` : originalText;
+              }
+            };
+
+            requestAnimationFrame(animate);
+          }
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.hero-stats, .stats-bar, .stats-section').forEach(el => {
+    statsObserver.observe(el);
+  });
 })
