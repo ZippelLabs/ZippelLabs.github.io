@@ -579,29 +579,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => revealObserver.observe(el));
 
 
-// 3. Navbar Active State & Scroll Progress
+// 3. Navbar Active State (throttled for performance)
 const nav = document.getElementById('navbar');
-
-// Create scroll progress bar
-const scrollProgress = document.createElement('div');
-scrollProgress.className = 'scroll-progress';
-scrollProgress.style.width = '0%';
-document.body.appendChild(scrollProgress);
+let scrollTimeout: number | null = null;
 
 window.addEventListener('scroll', () => {
-  if (nav) {
-    if (window.scrollY > 20) {
-      nav.classList.add('shadow-md');
-    } else {
-      nav.classList.remove('shadow-md');
+  if (scrollTimeout) return;
+  scrollTimeout = window.setTimeout(() => {
+    if (nav) {
+      if (window.scrollY > 20) {
+        nav.classList.add('shadow-md');
+      } else {
+        nav.classList.remove('shadow-md');
+      }
     }
-  }
-
-  // Update scroll progress
-  const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (window.scrollY / windowHeight) * 100;
-  scrollProgress.style.width = `${scrolled}%`;
-});
+    scrollTimeout = null;
+  }, 50);
+}, { passive: true });
 
 // 4. Ripple Effect on Buttons
 function createRipple(event: MouseEvent) {
