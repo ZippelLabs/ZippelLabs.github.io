@@ -1,5 +1,6 @@
 export class TerminalHero {
   private element: HTMLElement;
+  private baseDelay = 12;
   constructor(elementId: string) {
     const el = document.getElementById(elementId);
     if (!el) throw new Error(`Element ${elementId} not found`);
@@ -53,7 +54,7 @@ export class TerminalHero {
   }
 
   private async typeLine(text: string, style: 'command' | 'output' | 'success' | 'error' | 'warning' = 'output', delay = 30) {
-    const outputDiv = document.getElementById('terminal-output');
+    const outputDiv = this.element.querySelector('#terminal-output');
     if (!outputDiv) return;
 
     const line = document.createElement('div');
@@ -78,41 +79,36 @@ export class TerminalHero {
       const body = this.element.querySelector('.terminal-body');
       if (body) body.scrollTop = body.scrollHeight;
 
-      await new Promise(r => setTimeout(r, Math.random() * delay + 10)); // Variable typing speed
+      const step = Math.max(10, delay || this.baseDelay);
+      await new Promise(r => setTimeout(r, step));
     }
   }
 
   private async runSequence() {
-    await new Promise(r => setTimeout(r, 800));
+    await new Promise(r => setTimeout(r, 300));
 
-    await this.typeLine('zippellabs --audit --target rollup_prover.zkvm', 'command');
-    await new Promise(r => setTimeout(r, 400));
+    await this.typeLine('zippellabs audit rollup_prover.zkvm --deep', 'command', this.baseDelay);
+    await new Promise(r => setTimeout(r, 120));
 
-    await this.typeLine('Initializing ZippelLabs Security Suite v3.1.0...', 'output');
-    await new Promise(r => setTimeout(r, 200));
-    await this.typeLine('[+] Loading constraint analyzer... DONE', 'output', 10);
-    await this.typeLine('[+] Checking for under-constrained signals... DONE', 'output', 10);
-    await this.typeLine('[+] Verifying proof system soundness... DONE', 'output', 10);
+    await this.typeLine('Booting ZippelLabs Security Suite v3.2.0...', 'output', this.baseDelay);
+    await this.typeLine('[+] Constraint analyzer loaded', 'output', this.baseDelay);
+    await this.typeLine('[+] Proof system soundness checks ready', 'output', this.baseDelay);
 
-    await new Promise(r => setTimeout(r, 600));
-    await this.typeLine('Scanning for vulnerabilities...', 'output');
+    await new Promise(r => setTimeout(r, 180));
+    await this.typeLine('Scanning circuits and zkVM boundaries...', 'output', this.baseDelay);
 
-    await new Promise(r => setTimeout(r, 1200));
-    await this.typeLine('[CRITICAL] Range check missing in ALU lookup constraints', 'error');
-    await this.typeLine('Reason: Witness value not bounded before table lookup.', 'output', 5);
+    await new Promise(r => setTimeout(r, 260));
+    await this.typeLine('[CRITICAL] Range check missing in ALU lookup constraints', 'error', this.baseDelay);
+    await this.typeLine('Reason: witness value not bounded before table lookup.', 'output', this.baseDelay);
 
-    await new Promise(r => setTimeout(r, 800));
-    await this.typeLine('[WARN] Potential witness malleability detected.', 'warning');
+    await new Promise(r => setTimeout(r, 220));
+    await this.typeLine('[WARN] Potential witness malleability detected.', 'warning', this.baseDelay);
 
-    await new Promise(r => setTimeout(r, 800));
-    await this.typeLine('Generating proof-of-exploit...', 'output');
-    await new Promise(r => setTimeout(r, 1500)); // Suspense
-    await this.typeLine('✅ Proof Generation Complete.', 'success');
+    await new Promise(r => setTimeout(r, 220));
+    await this.typeLine('Generating proof-of-exploit...', 'output', this.baseDelay);
+    await new Promise(r => setTimeout(r, 420));
+    await this.typeLine('✅ Proof generated. Mitigate before mainnet.', 'success', this.baseDelay);
 
-    await new Promise(r => setTimeout(r, 500));
-    await this.typeLine('Don\'t let this happen in production.', 'output', 50);
-
-    // Reveal CTA buttons logic could go here or be hidden in CSS and shown now
     const cta = document.getElementById('hero-cta-container');
     if (cta) cta.classList.remove('opacity-0');
   }

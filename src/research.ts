@@ -1,5 +1,9 @@
 import './style.css'
 
+const initTheme = () => {
+  document.documentElement.setAttribute('data-theme', 'light')
+}
+
 // Navigation scroll handler
 function initNavigation() {
   const nav = document.querySelector('.nav-container')
@@ -76,13 +80,14 @@ function initMobileMenu() {
 // Render Content
 const app = document.querySelector<HTMLDivElement>('#app')!
 
+initTheme()
+
 app.innerHTML = `
   <!-- Navigation -->
   <nav class="nav-container">
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/logo.jpg" alt="ZippelLabs" class="nav-logo-img" />
-        ZippelLabs
+        <img src="/logo-ZP.png" alt="ZippelLabs logo" class="nav-logo-img" />
       </a>
       <div class="nav-links">
         <a href="/index.html#services" class="nav-link">Services</a>
@@ -328,8 +333,7 @@ app.innerHTML = `
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="nav-logo">
-            <img src="/logo.jpg" alt="ZippelLabs" class="nav-logo-img" />
-            ZippelLabs
+            <span class="nav-logo-mark">Z</span>
           </a>
           <p class="footer-tagline">Securing cryptographic systems.</p>
         </div>

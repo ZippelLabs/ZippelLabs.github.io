@@ -1,14 +1,19 @@
 import './style.css'
 
+const initTheme = () => {
+  document.documentElement.setAttribute('data-theme', 'light')
+}
+
 const app = document.querySelector<HTMLDivElement>('#app')!
+
+initTheme()
 
 app.innerHTML = `
   <!-- Navigation -->
   <nav class="audit-nav">
     <div class="audit-nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/logo.jpg" alt="ZippelLabs" class="nav-logo-img" />
-        ZippelLabs
+        <img src="/logo-ZP.png" alt="ZippelLabs logo" class="nav-logo-img" />
       </a>
       <div class="nav-links">
         <a href="/" class="audit-nav-link">← Back to Home</a>
