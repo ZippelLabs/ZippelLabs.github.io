@@ -45,16 +45,20 @@ app.innerHTML = `
   </nav>
 
   <!-- Hero Section -->
-  <header class="pt-40 pb-20 relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand-50 rounded-full blur-3xl -z-10 opacity-60"></div>
+  <header class="pt-40 pb-20 relative overflow-hidden gradient-animate">
+    <!-- Floating Particles -->
+    <div class="particle" style="width: 60px; height: 60px; top: 10%; left: 15%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 40px; height: 40px; top: 60%; left: 80%; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 80px; height: 80px; top: 40%; left: 10%; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 50px; height: 50px; top: 80%; left: 75%; animation-delay: 1s;"></div>
     
     <div class="container-max text-center max-w-4xl section-reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-widest mb-8 border border-brand-100">
+      <div class="badge-shine inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-widest mb-8 border border-brand-100">
         World-Class Cryptographic Security
       </div>
       
       <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight text-gray-900">
-        Scalability, Privacy,<br>and <span class="text-brand-600">Provable Security.</span>
+        Scalability, Privacy,<br>and <span class="text-gradient">Provable Security.</span>
       </h1>
       
       <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -62,10 +66,10 @@ app.innerHTML = `
       </p>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/audits.html" class="btn btn-primary text-lg px-8 py-4 w-full sm:w-auto transform hover:scale-105 transition-transform">
+        <a href="https://calendar.app.google/B9vx7KUyW983E5P96" target="_blank" rel="noopener noreferrer" class="btn btn-gradient shadow-brand ripple-container text-lg px-8 py-4 w-full sm:w-auto text-white font-semibold">
           Talk to an Expert
         </a>
-        <a href="#resources" class="btn btn-outline text-lg px-8 py-4 w-full sm:w-auto">
+        <a href="#resources" class="btn btn-outline magnetic text-lg px-8 py-4 w-full sm:w-auto">
           View Research
         </a>
       </div>
@@ -75,27 +79,27 @@ app.innerHTML = `
     <div class="container-max mt-24 section-reveal delay-200">
       <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Trusted by industry leaders</p>
       <div class="flex flex-wrap justify-center gap-8 items-center">
-        <a href="https://chain.link" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://chain.link" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://cryptologos.cc/logos/chainlink-link-logo.svg" alt="Chainlink" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">Chainlink</span>
         </a>
-        <a href="https://starknet.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://starknet.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="Starknet" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">Starknet</span>
         </a>
-        <a href="https://polygon.technology" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://polygon.technology" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">Polygon</span>
         </a>
-        <a href="https://zksync.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://zksync.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://avatars.githubusercontent.com/u/77478564?s=200&v=4" alt="zkSync" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">zkSync</span>
         </a>
-        <a href="https://scroll.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://scroll.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://avatars.githubusercontent.com/u/87750292?s=200&v=4" alt="Scroll" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">Scroll</span>
         </a>
-        <a href="https://linea.build" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <a href="https://linea.build" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
           <img src="https://cdn.brandfetch.io/idDdvk1p2Z/theme/dark/symbol.svg?k=id64Mup7ac" alt="Linea" class="w-6 h-6 object-contain" />
           <span class="text-sm font-bold text-gray-700">Linea</span>
         </a>
@@ -162,8 +166,8 @@ app.innerHTML = `
 
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Card 1 -->
-        <div class="section-reveal bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
-          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+        <div class="section-reveal stagger-1 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
+          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
           <h3 class="text-xl font-bold mb-3">Audit</h3>
@@ -173,8 +177,8 @@ app.innerHTML = `
         </div>
 
         <!-- Card 2 -->
-        <div class="section-reveal delay-100 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
-          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+        <div class="section-reveal stagger-2 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
+          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
           </div>
           <h3 class="text-xl font-bold mb-3">Advise</h3>
@@ -184,8 +188,8 @@ app.innerHTML = `
         </div>
 
         <!-- Card 3 -->
-        <div class="section-reveal delay-200 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
-          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+        <div class="section-reveal stagger-3 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
+          <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
           </div>
           <h3 class="text-xl font-bold mb-3">Assess</h3>
@@ -576,8 +580,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// 3. Navbar Active State
+
+// 3. Navbar Active State & Scroll Progress
 const nav = document.getElementById('navbar');
+
+// Create scroll progress bar
+const scrollProgress = document.createElement('div');
+scrollProgress.className = 'scroll-progress';
+scrollProgress.style.width = '0%';
+document.body.appendChild(scrollProgress);
+
 window.addEventListener('scroll', () => {
   if (nav) {
     if (window.scrollY > 20) {
@@ -586,4 +598,125 @@ window.addEventListener('scroll', () => {
       nav.classList.remove('shadow-md');
     }
   }
+
+  // Update scroll progress
+  const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (window.scrollY / windowHeight) * 100;
+  scrollProgress.style.width = `${scrolled}%`;
 });
+
+// 4. Ripple Effect on Buttons
+function createRipple(event: MouseEvent) {
+  const button = event.currentTarget as HTMLElement;
+
+  if (!button.classList.contains('ripple-container')) return;
+
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+
+  const rect = button.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+
+  button.appendChild(ripple);
+
+  setTimeout(() => ripple.remove(), 600);
+}
+
+document.querySelectorAll('.ripple-container').forEach(button => {
+  button.addEventListener('click', createRipple as EventListener);
+});
+
+// 5. Stats Counter Animation
+function animateCounter(element: HTMLElement, target: number, duration: number = 2000, suffix: string = '') {
+  const start = 0;
+  const increment = target / (duration / 16);
+  let current = start;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target + suffix;
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current) + suffix;
+    }
+  }, 16);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const statNumber = entry.target as HTMLElement;
+      const text = statNumber.textContent || '';
+
+      // Parse the number and suffix
+      if (text.includes('+')) {
+        const num = parseInt(text.replace('+', ''));
+        animateCounter(statNumber, num, 2000, '+');
+      } else if (text.includes('$') && text.includes('B')) {
+        const num = parseInt(text.replace('$', '').replace('B', ''));
+        statNumber.textContent = '$0B';
+        animateCounter(statNumber, num, 2000, 'B');
+      } else if (text.includes('%')) {
+        const num = parseInt(text.replace('%', ''));
+        statNumber.textContent = '0%';
+        animateCounter(statNumber, num, 2000, '%');
+      }
+
+      statNumber.classList.add('counter-animate');
+      statsObserver.unobserve(statNumber);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(stat => statsObserver.observe(stat));
+
+// 6. Active Section Highlighting in Navigation
+const sections = document.querySelectorAll('section[id], header');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.remove('text-brand-600', 'font-semibold');
+        link.classList.add('text-gray-600');
+
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('text-brand-600', 'font-semibold');
+          link.classList.remove('text-gray-600');
+        }
+      });
+    }
+  });
+}, {
+  threshold: 0.3,
+  rootMargin: '-100px 0px -66%'
+});
+
+sections.forEach(section => sectionObserver.observe(section));
+
+// 7. Enhanced Logo Hover
+const logo = document.querySelector('nav a[href="#"]');
+if (logo) {
+  logo.addEventListener('mouseenter', () => {
+    const img = logo.querySelector('img');
+    if (img) {
+      img.style.transform = 'scale(1.1) rotate(5deg)';
+    }
+  });
+
+  logo.addEventListener('mouseleave', () => {
+    const img = logo.querySelector('img');
+    if (img) {
+      img.style.transform = 'scale(1) rotate(0deg)';
+    }
+  });
+}

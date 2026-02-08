@@ -15,6 +15,12 @@
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
 
+  /* Animation Timings */
+  --anim-fast: 150ms;
+  --anim-base: 300ms;
+  --anim-slow: 600ms;
+  --anim-slower: 1000ms;
+
   /* Neutrals */
   --color-bg: #ffffff;
   --color-bg-alt: #f9fafb;
@@ -305,4 +311,344 @@ h4 {
 .service-type-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   ENHANCED ANIMATIONS & EFFECTS
+   ======================================== */
+
+/* Animated Gradient Background */
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background: linear-gradient(-45deg,
+      var(--color-brand-50),
+      var(--color-brand-100),
+      #e0f2fe,
+      var(--color-brand-50));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Floating Particles Effect */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+
+  66% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-brand-200);
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Badge Shine Effect */
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  animation: shine 3s ease-in-out infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Ripple Effect */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* Enhanced Shadow with Color */
+.shadow-brand {
+  box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.3);
+  transition: box-shadow var(--anim-base) ease;
+}
+
+.shadow-brand:hover {
+  box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.4);
+}
+
+/* Icon Rotation on Hover */
+.icon-rotate {
+  transition: transform var(--anim-base) ease;
+}
+
+.icon-rotate:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Magnetic Cursor Effect */
+.magnetic {
+  transition: transform var(--anim-fast) ease;
+}
+
+.magnetic:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced Button Gradient */
+.btn-gradient {
+  background: linear-gradient(135deg,
+      var(--color-brand-600),
+      var(--color-brand-500));
+  background-size: 200% 200%;
+  transition: all var(--anim-base) ease;
+}
+
+.btn-gradient:hover {
+  background-position: 100% 0;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+      var(--color-brand-500),
+      var(--color-brand-400));
+  z-index: 9999;
+  transform-origin: left;
+  transition: transform var(--anim-fast) ease;
+}
+
+/* Counter Animation */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: count-up 0.6s ease-out;
+}
+
+/* Stagger Delays for Multiple Items */
+.stagger-1 {
+  animation-delay: 100ms;
+}
+
+.stagger-2 {
+  animation-delay: 200ms;
+}
+
+.stagger-3 {
+  animation-delay: 300ms;
+}
+
+.stagger-4 {
+  animation-delay: 400ms;
+}
+
+.stagger-5 {
+  animation-delay: 500ms;
+}
+
+.stagger-6 {
+  animation-delay: 600ms;
+}
+
+/* Parallax Container */
+.parallax {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Enhanced Card Glow */
+.card-glow {
+  position: relative;
+  transition: all var(--anim-base) ease;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+      var(--color-brand-400),
+      var(--color-brand-600));
+  opacity: 0;
+  transition: opacity var(--anim-base) ease;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.card-glow:hover::before {
+  opacity: 0.6;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  padding: 0.5rem 0.75rem;
+  background: var(--color-text-primary);
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--anim-base) ease;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .gradient-animate {
+    animation: none;
+  }
+
+  .particle {
+    animation: none;
+  }
+
+  .badge-shine::before {
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1419;
+    --color-bg-alt: #1a1f29;
+    --color-text-primary: #e6edf3;
+    --color-text-secondary: #9198a1;
+  }
 }
