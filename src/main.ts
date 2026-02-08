@@ -46,11 +46,9 @@ app.innerHTML = `
 
   <!-- Hero Section -->
   <header class="pt-40 pb-20 relative overflow-hidden gradient-animate">
-    <!-- Floating Particles -->
-    <div class="particle" style="width: 60px; height: 60px; top: 10%; left: 15%; animation-delay: 0s;"></div>
-    <div class="particle" style="width: 40px; height: 40px; top: 60%; left: 80%; animation-delay: 2s;"></div>
-    <div class="particle" style="width: 80px; height: 80px; top: 40%; left: 10%; animation-delay: 4s;"></div>
-    <div class="particle" style="width: 50px; height: 50px; top: 80%; left: 75%; animation-delay: 1s;"></div>
+    <!-- Floating Particles (reduced for performance) -->
+    <div class="particle" style="width: 60px; height: 60px; top: 15%; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 50px; height: 50px; top: 70%; left: 75%; animation-delay: 3s;"></div>
     
     <div class="container-max text-center max-w-4xl section-reveal">
       <div class="badge-shine inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-widest mb-8 border border-brand-100">

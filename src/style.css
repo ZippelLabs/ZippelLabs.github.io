@@ -336,8 +336,9 @@ h4 {
       var(--color-brand-100),
       #e0f2fe,
       var(--color-brand-50));
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease infinite;
+  will-change: background-position;
 }
 
 /* Floating Particles Effect */
@@ -361,8 +362,10 @@ h4 {
   position: absolute;
   border-radius: 50%;
   background: var(--color-brand-200);
-  opacity: 0.3;
-  animation: float 6s ease-in-out infinite;
+  opacity: 0.2;
+  animation: float 8s ease-in-out infinite;
+  will-change: transform;
+  pointer-events: none;
 }
 
 /* Badge Shine Effect */
@@ -545,28 +548,14 @@ h4 {
   will-change: transform;
 }
 
-/* Enhanced Card Glow */
+/* Enhanced Card Glow - Simplified for performance */
 .card-glow {
   position: relative;
-  transition: all var(--anim-base) ease;
+  transition: transform var(--anim-base) ease, box-shadow var(--anim-base) ease;
 }
 
-.card-glow::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(135deg,
-      var(--color-brand-400),
-      var(--color-brand-600));
-  opacity: 0;
-  transition: opacity var(--anim-base) ease;
-  z-index: -1;
-  filter: blur(20px);
-}
-
-.card-glow:hover::before {
-  opacity: 0.6;
+.card-glow:hover {
+  box-shadow: 0 10px 40px -10px rgba(79, 70, 229, 0.3);
 }
 
 /* Tooltip */
