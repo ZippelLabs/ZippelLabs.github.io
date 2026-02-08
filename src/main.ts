@@ -14,7 +14,21 @@ app.innerHTML = `
       <!-- Desktop Menu -->
       <div class="hidden md:flex items-center gap-8">
         <a href="#challenges" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Challenges</a>
-        <a href="#services" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Services</a>
+        <div class="relative group">
+          <a href="#services" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors flex items-center gap-1">
+            Services
+            <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+          <div class="services-dropdown absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[240px]">
+              <a href="/audits.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Privacy Smart Contract Audits</a>
+              <a href="/audits.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Blockchain Protocol Audits</a>
+              <a href="/audits.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">ZKP Audit</a>
+            </div>
+          </div>
+        </div>
         <a href="#expertise" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Expertise</a>
         <a href="#resources" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Resources</a>
       </div>
@@ -45,62 +59,87 @@ app.innerHTML = `
   </nav>
 
   <!-- Hero Section -->
-  <header class="pt-40 pb-20 relative overflow-hidden gradient-animate">
+  <header class="pt-32 pb-20 relative overflow-hidden gradient-animate">
     <!-- Floating Particles (reduced for performance) -->
     <div class="particle" style="width: 60px; height: 60px; top: 15%; left: 20%; animation-delay: 0s;"></div>
     <div class="particle" style="width: 50px; height: 50px; top: 70%; left: 75%; animation-delay: 3s;"></div>
     
-    <div class="container-max text-center max-w-4xl section-reveal">
-      <div class="badge-shine inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-widest mb-8 border border-brand-100">
-        World-Class Cryptographic Security
-      </div>
-      
-      <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight text-gray-900">
-        Scalability, Privacy,<br>and <span class="text-gradient">Provable Security.</span>
-      </h1>
-      
-      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-        We secure the ZK circuits, zkVMs, and cryptographic protocols that power the next generation of decentralized infrastructure.
-      </p>
-      
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://calendar.app.google/B9vx7KUyW983E5P96" target="_blank" rel="noopener noreferrer" class="btn btn-gradient shadow-brand ripple-container text-lg px-8 py-4 w-full sm:w-auto text-white font-semibold">
-          Talk to an Expert
-        </a>
-        <a href="#resources" class="btn btn-outline magnetic text-lg px-8 py-4 w-full sm:w-auto">
-          View Research
-        </a>
-      </div>
-    </div>
+    <div class="container-max">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div class="section-reveal text-left">
+          <div class="badge-shine inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-widest mb-6 border border-brand-100">
+            World-Class Cryptographic Security
+          </div>
+          
+          <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-gray-900">
+            Scalability, Privacy,<br>and <span class="text-gradient">Proofs Security.</span>
+          </h1>
+          
+          <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl leading-relaxed">
+            We secure privacy, scaling, and ZK proofs protocols that power the next generation of decentralized infrastructure.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <a href="https://calendar.app.google/B9vx7KUyW983E5P96" target="_blank" rel="noopener noreferrer" class="btn btn-gradient shadow-brand ripple-container text-lg px-8 py-4 w-full sm:w-auto text-white font-semibold">
+              Talk to an Expert
+            </a>
+          </div>
+        </div>
 
-    <!-- Social Proof -->
-    <div class="container-max mt-24 section-reveal delay-200">
-      <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Trusted by industry leaders</p>
-      <div class="flex flex-wrap justify-center gap-8 items-center">
-        <a href="https://chain.link" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://cryptologos.cc/logos/chainlink-link-logo.svg" alt="Chainlink" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">Chainlink</span>
-        </a>
-        <a href="https://starknet.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="Starknet" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">Starknet</span>
-        </a>
-        <a href="https://polygon.technology" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">Polygon</span>
-        </a>
-        <a href="https://zksync.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://avatars.githubusercontent.com/u/77478564?s=200&v=4" alt="zkSync" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">zkSync</span>
-        </a>
-        <a href="https://scroll.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://avatars.githubusercontent.com/u/87750292?s=200&v=4" alt="Scroll" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">Scroll</span>
-        </a>
-        <a href="https://linea.build" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 magnetic">
-          <img src="https://cdn.brandfetch.io/idDdvk1p2Z/theme/dark/symbol.svg?k=id64Mup7ac" alt="Linea" class="w-6 h-6 object-contain" />
-          <span class="text-sm font-bold text-gray-700">Linea</span>
-        </a>
+        <!-- Right Content - Orbital Logo Design -->
+        <div class="section-reveal delay-200 hidden md:block">
+          <div class="orbital-container-inline">
+            <!-- ZP Logo - Center -->
+            <div class="orbital-center">
+              <img src="/logo-ZP.png" alt="ZippelLabs" />
+            </div>
+            
+            <!-- Orbital Ring with Chain Logos -->
+            <div class="orbital-ring">
+              <!-- Ethereum - 0deg -->
+              <div class="orbital-item" style="--angle: 0deg;">
+                <img src="/ethereum-gold.jpg" alt="Ethereum" />
+              </div>
+              <!-- Solana - 36deg -->
+              <div class="orbital-item" style="--angle: 36deg;">
+                <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana" />
+              </div>
+              <!-- Arbitrum - 72deg -->
+              <div class="orbital-item" style="--angle: 72deg;">
+                <img src="https://cryptologos.cc/logos/arbitrum-arb-logo.svg" alt="Arbitrum" />
+              </div>
+              <!-- Optimism - 108deg -->
+              <div class="orbital-item" style="--angle: 108deg;">
+                <img src="https://www.rollup.codes/images/optimism-logo.svg" alt="Optimism" />
+              </div>
+              <!-- Starknet - 144deg -->
+              <div class="orbital-item" style="--angle: 144deg;">
+                <img src="/starknet-logo.jpg" alt="Starknet" />
+              </div>
+              <!-- Scroll - 180deg -->
+              <div class="orbital-item" style="--angle: 180deg;">
+                <img src="https://icons.llamao.fi/icons/chains/rsz_scroll?w=48&h=48" alt="Scroll" />
+              </div>
+              <!-- Polygon - 216deg -->
+              <div class="orbital-item" style="--angle: 216deg;">
+                <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" />
+              </div>
+              <!-- zkSync - 252deg -->
+              <div class="orbital-item" style="--angle: 252deg;">
+                <img src="https://www.rollup.codes/images/zksync-era-logo.svg" alt="zkSync" />
+              </div>
+              <!-- Linea - 288deg -->
+              <div class="orbital-item" style="--angle: 288deg;">
+                <img src="https://icons.llamao.fi/icons/chains/rsz_linea?w=48&h=48" alt="Linea" />
+              </div>
+              <!-- Base - 324deg -->
+              <div class="orbital-item" style="--angle: 324deg;">
+                <img src="https://www.rollup.codes/images/base-logo.svg" alt="Base" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -154,7 +193,7 @@ app.innerHTML = `
     </div>
   </section>
 
-  <!-- Approach / Services Section -->
+  <!-- COMMENTED OUT: Comprehensive Security Lifecycle Section - To be replaced with detailed Audit Process
   <section id="services" class="section-py bg-gray-50 border-y border-gray-200">
     <div class="container-max">
       <div class="text-center max-w-3xl mx-auto mb-16 section-reveal">
@@ -163,7 +202,6 @@ app.innerHTML = `
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
         <div class="section-reveal stagger-1 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
           <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -173,8 +211,6 @@ app.innerHTML = `
             In-depth manual review combined with custom static analysis tools. We check every line of constraint logic and smart contract code.
           </p>
         </div>
-
-        <!-- Card 2 -->
         <div class="section-reveal stagger-2 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
           <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -184,8 +220,6 @@ app.innerHTML = `
             Architectural guidance before line of code is written. We help design secure protocols and choose the right proving stack.
           </p>
         </div>
-
-        <!-- Card 3 -->
         <div class="section-reveal stagger-3 bg-white p-8 rounded-2xl border border-gray-100 shadow-brand hover:shadow-lg transition-all duration-300 group card-glow">
           <div class="w-12 h-12 bg-blue-50 text-brand-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all icon-rotate">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -198,95 +232,36 @@ app.innerHTML = `
       </div>
     </div>
   </section>
+  END COMMENTED OUT -->
 
-  <!-- Languages We Audit Section -->
+  <!-- COMMENTED OUT: Languages We Audit Section - To be merged with Ecosystems into unified section
   <section class="section-py bg-white">
     <div class="container-max">
       <div class="text-center max-w-3xl mx-auto mb-12 section-reveal">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Languages We Audit</h2>
         <p class="text-gray-600 text-lg">Deep expertise across the entire spectrum of smart contract and ZK-circuit languages.</p>
       </div>
-
       <div class="lang-icon-grid max-w-4xl mx-auto section-reveal delay-100">
-        <!-- Solidity -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity" class="w-10 h-10" />
-          </div>
-          <span class="lang-name">Solidity</span>
-        </div>
-
-        <!-- Rust -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://rustacean.net/assets/cuddlyferris.svg" alt="Rust" class="w-10 h-10" />
-          </div>
-          <span class="lang-name">Rust</span>
-        </div>
-
-        <!-- Go -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" class="w-10 h-10" />
-          </div>
-          <span class="lang-name">Go</span>
-        </div>
-
-        <!-- Cairo -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="Cairo" class="w-10 h-10" />
-          </div>
-          <span class="lang-name">Cairo</span>
-        </div>
-
-        <!-- Circom -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://avatars.githubusercontent.com/u/32504687?s=200&v=4" alt="Circom" class="w-10 h-10 rounded" />
-          </div>
-          <span class="lang-name">Circom</span>
-        </div>
-
-        <!-- Noir -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://avatars.githubusercontent.com/u/43825622?s=200&v=4" alt="Noir" class="w-10 h-10 rounded" />
-          </div>
-          <span class="lang-name">Noir</span>
-        </div>
-
-        <!-- Halo2 -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <img src="https://cryptologos.cc/logos/zcash-zec-logo.svg" alt="Halo2" class="w-10 h-10" />
-          </div>
-          <span class="lang-name">Halo2</span>
-        </div>
-
-        <!-- zk-DSLs -->
-        <div class="lang-card">
-          <div class="lang-icon">
-            <svg viewBox="0 0 24 24" class="w-10 h-10" fill="none" stroke="#6366F1" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"/>
-              <polyline points="8 6 2 12 8 18"/>
-              <line x1="10" y1="20" x2="14" y2="4"/>
-            </svg>
-          </div>
-          <span class="lang-name">zk-DSLs</span>
-        </div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity" class="w-10 h-10" /></div><span class="lang-name">Solidity</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://rustacean.net/assets/cuddlyferris.svg" alt="Rust" class="w-10 h-10" /></div><span class="lang-name">Rust</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" class="w-10 h-10" /></div><span class="lang-name">Go</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="Cairo" class="w-10 h-10" /></div><span class="lang-name">Cairo</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://avatars.githubusercontent.com/u/32504687?s=200&v=4" alt="Circom" class="w-10 h-10 rounded" /></div><span class="lang-name">Circom</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://avatars.githubusercontent.com/u/43825622?s=200&v=4" alt="Noir" class="w-10 h-10 rounded" /></div><span class="lang-name">Noir</span></div>
+        <div class="lang-card"><div class="lang-icon"><img src="https://cryptologos.cc/logos/zcash-zec-logo.svg" alt="Halo2" class="w-10 h-10" /></div><span class="lang-name">Halo2</span></div>
+        <div class="lang-card"><div class="lang-icon"><svg viewBox="0 0 24 24" class="w-10 h-10" fill="none" stroke="#6366F1" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="10" y1="20" x2="14" y2="4"/></svg></div><span class="lang-name">zk-DSLs</span></div>
       </div>
     </div>
   </section>
+  END COMMENTED OUT -->
 
-  <!-- Domains Section -->
+  <!-- COMMENTED OUT: Domains Section - To be integrated as categories within unified section
   <section class="section-py bg-gray-50 border-y border-gray-200">
     <div class="container-max">
       <div class="text-center max-w-3xl mx-auto mb-12 section-reveal">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Domains We Secure</h2>
         <p class="text-gray-600 text-lg">From DeFi protocols to privacy infrastructure, we cover the full Web3 spectrum.</p>
       </div>
-
       <div class="domain-grid max-w-4xl mx-auto section-reveal delay-100">
         <span class="domain-badge">L1/L2</span>
         <span class="domain-badge">DEX</span>
@@ -303,96 +278,33 @@ app.innerHTML = `
       </div>
     </div>
   </section>
+  END COMMENTED OUT -->
 
-  <!-- Ecosystems Section -->
+  <!-- COMMENTED OUT: Ecosystems Section - To be merged with Languages into unified "Technologies & Ecosystems" section
   <section class="section-py bg-white">
     <div class="container-max">
       <div class="text-center max-w-3xl mx-auto mb-12 section-reveal">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Ecosystems We Support</h2>
         <p class="text-gray-600 text-lg">Multi-chain expertise across leading blockchain networks.</p>
       </div>
-
       <div class="ecosystem-grid max-w-5xl mx-auto section-reveal delay-100">
-        <!-- Ethereum -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum" class="ecosystem-icon" />
-          <span>Ethereum</span>
-        </div>
-        
-        <!-- Polygon -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" class="ecosystem-icon" />
-          <span>Polygon</span>
-        </div>
-
-        <!-- Avalanche -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/avalanche-avax-logo.svg" alt="Avalanche" class="ecosystem-icon" />
-          <span>Avalanche</span>
-        </div>
-
-        <!-- Optimism -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg" alt="Optimism" class="ecosystem-icon" />
-          <span>Optimism</span>
-        </div>
-
-        <!-- Arbitrum -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/arbitrum-arb-logo.svg" alt="Arbitrum" class="ecosystem-icon" />
-          <span>Arbitrum</span>
-        </div>
-
-        <!-- Solana -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana" class="ecosystem-icon" />
-          <span>Solana</span>
-        </div>
-
-        <!-- Sui -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/sui-sui-logo.svg" alt="Sui" class="ecosystem-icon" />
-          <span>Sui</span>
-        </div>
-
-        <!-- Aptos -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/aptos-apt-logo.svg" alt="Aptos" class="ecosystem-icon" />
-          <span>Aptos</span>
-        </div>
-
-        <!-- Cosmos SDK -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/cosmos-atom-logo.svg" alt="Cosmos" class="ecosystem-icon" />
-          <span>Cosmos SDK</span>
-        </div>
-
-        <!-- Polkadot -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.svg" alt="Polkadot" class="ecosystem-icon" />
-          <span>Polkadot</span>
-        </div>
-
-        <!-- StarkNet -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="StarkNet" class="ecosystem-icon" />
-          <span>StarkNet</span>
-        </div>
-
-        <!-- NEAR -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/near-protocol-near-logo.svg" alt="NEAR" class="ecosystem-icon" />
-          <span>NEAR</span>
-        </div>
-
-        <!-- BitVM Alliance -->
-        <div class="ecosystem-chip">
-          <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="BitVM" class="ecosystem-icon" />
-          <span>BitVM Alliance</span>
-        </div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum" class="ecosystem-icon" /><span>Ethereum</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" class="ecosystem-icon" /><span>Polygon</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/avalanche-avax-logo.svg" alt="Avalanche" class="ecosystem-icon" /><span>Avalanche</span></div>
+        <div class="ecosystem-chip"><img src="https://www.rollup.codes/images/optimism-logo.svg" alt="Optimism" class="ecosystem-icon" /><span>Optimism</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/arbitrum-arb-logo.svg" alt="Arbitrum" class="ecosystem-icon" /><span>Arbitrum</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana" class="ecosystem-icon" /><span>Solana</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/sui-sui-logo.svg" alt="Sui" class="ecosystem-icon" /><span>Sui</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/aptos-apt-logo.svg" alt="Aptos" class="ecosystem-icon" /><span>Aptos</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/cosmos-atom-logo.svg" alt="Cosmos" class="ecosystem-icon" /><span>Cosmos SDK</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.svg" alt="Polkadot" class="ecosystem-icon" /><span>Polkadot</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/starknet-token-strk-logo.svg" alt="StarkNet" class="ecosystem-icon" /><span>StarkNet</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/near-protocol-near-logo.svg" alt="NEAR" class="ecosystem-icon" /><span>NEAR</span></div>
+        <div class="ecosystem-chip"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="BitVM" class="ecosystem-icon" /><span>BitVM Alliance</span></div>
       </div>
     </div>
   </section>
+  END COMMENTED OUT -->
 
   <!-- Expertise / Stats Section -->
   <section id="expertise" class="section-py bg-white">
